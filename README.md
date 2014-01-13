@@ -1,4 +1,4 @@
-next-board
+HCI Project
 ==========
 
-next 수업에서 만들 게시판
+making a feedback board
