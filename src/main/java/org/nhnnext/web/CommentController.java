@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("board/{boardID}/comment")
 public class CommentController {
 
-	@Autowired
+//	@Autowired
 	private CommentRepository commentRepository;
-	@Autowired
+//	@Autowired
 	private BoardRepository boardRepository;
 	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
