@@ -136,7 +136,7 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
-		<!-- embedded tomcat 설정 -->
+		<!-- embedded tomcat 설정 
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-core</artifactId>
@@ -167,7 +167,7 @@
 			<artifactId>tomcat-jsp-api</artifactId>
 			<version>${tomcat.version}</version>
 		</dependency>
-
+-->
 	</dependencies>
 
 	<build>
