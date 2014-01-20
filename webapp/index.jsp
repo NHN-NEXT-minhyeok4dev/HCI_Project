@@ -11,7 +11,14 @@
 </head>
 <body>
 	<div id="warp">
-		<div>here</div>
+		<div id="new_post">
+			<form action="/board" method="POST" enctype="multipart/form-data">
+				<input type="text" id="title" name="title" size="45" placeholder="제목을 입력하세요"><br>
+				<textarea id="contents" name="contents" rows="10" cols="40" placeholder="내용을 입력하세요"></textarea><br>
+				<input type="submit" value="제출">
+				<button type="button" name="cancel" onclick="location.href='/'">취소</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
