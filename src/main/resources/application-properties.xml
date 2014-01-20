@@ -5,7 +5,7 @@
 
 	<!-- Database -->
     <entry key="database.driverClassName">com.mysql.jdbc.Driver</entry>
-    <entry key="database.url">jdbc:mysql://localhost/HCI_DataBase</entry>
-    <entry key="database.username"></entry>
-    <entry key="database.password"></entry>
+    <entry key="database.url">jdbc:mysql://localhost/HCI_Project</entry>
+    <entry key="database.username">HCI_admin</entry>
+    <entry key="database.password">ttstts</entry>
 </properties>
