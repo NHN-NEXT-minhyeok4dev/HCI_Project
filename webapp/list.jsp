@@ -8,14 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach items="${boards}" var="board"> ${board.title}<br />
-	<c:if test="${not empty board.fileName}"><img src="/images/${board.fileName }"></c:if>
-	
-		<hr />
-	</c:forEach>
-	
-	<br>
-	
-	<a href = "/board/form"><button>uploaod</button></a>
+	<div id="wrap">
+		<c:forEach items="${boards}" var="board"> ${board.title}<br />
+		<c:if test="${not empty board.fileName}"><img src="/images/${board.fileName }"></c:if>
+		
+			<hr />
+		</c:forEach>
+		
+		<br>
+		
+		<a href = "/board/form"><button>uploaod</button></a>
+	 </div>
 </body>
 </html>

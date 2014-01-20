@@ -10,6 +10,8 @@
 <title>HCI_Project</title>
 </head>
 <body>
-	<a href="/board/form">글쓰기</a>
+	<div id="warp">
+		<div>here</div>
+	</div>
 </body>
 </html>
