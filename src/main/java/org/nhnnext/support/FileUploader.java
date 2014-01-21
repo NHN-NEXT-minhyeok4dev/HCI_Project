@@ -5,7 +5,7 @@ import java.io.File;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploader {
-	private static final String ATTACHMENT_ROOT_DIR = "D:\\next-workspace\\jee-workspace\\next-board\\webapp\\images";
+	private static final String ATTACHMENT_ROOT_DIR = "/Users/asto/Documents/workspace/HCI_Project/webapp/pdf";
 
 	public static String upload(MultipartFile multipartFile) {
 		if (multipartFile.isEmpty()) {
@@ -20,7 +20,7 @@ public class FileUploader {
 		try {
 			multipartFile.transferTo(destFile);
 		} catch (Exception ex) {
-			throw new IllegalArgumentException(destFile + "로 첨부파일 옮기다 오류 발생");
+			throw new IllegalArgumentException(destFile + "");
 		}
 		return destFile;
 	}

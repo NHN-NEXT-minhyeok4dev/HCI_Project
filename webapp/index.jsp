@@ -12,7 +12,7 @@
 <body>
 	<div id="wrap">
 		<div id="new_post">
-			<form action="/board" method="POST" enctype="multipart/form-data">
+			<form action="/board" method="POST">
 				<input type="text" name="title" size="45" placeholder="제목을 입력하세요"><br>
 				<textarea name="contents" rows="10" cols="40" placeholder="내용을 입력하세요"></textarea><br>
 				<input type="submit" value="제출">

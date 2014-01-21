@@ -14,6 +14,8 @@ public class BoardController {
 	
 	@RequestMapping(value="/board", method=RequestMethod.POST)
 	public String create(Board board) {
+//		System.out.println("title : " + title + " contents : " + contents);
+		System.out.println("board:"+ board);
 		boardRepository.save(board);
 		return "redirect:/";
 	}
