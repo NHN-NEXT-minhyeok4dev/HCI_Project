@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="./img/nhnnext_favicon.ico">
-<link rel="stylesheet" type="text/css" href="./stylesheets/reset.css">
 <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="./stylesheets/reset.css">
 <title>HCI_Project</title>
 </head>
 <body>
-	<div id="warp">
+	<div id="wrap">
 		<div id="new_post">
 			<form action="/board" method="POST" enctype="multipart/form-data">
 				<input type="text" id="title" name="title" size="45" placeholder="제목을 입력하세요"><br>
