@@ -53,7 +53,7 @@ h1,h2 {
 		<div id="wrap_contents">
 
 			<!-- #1  |  간략한 설명  | PDF -->
-			<c:forEach items="${boards}" var="board"> ${board.title}<br />
+			<c:forEach items="${board}" var="board"> ${board.title}<br />
 				<div id="article">
 					board.title => ${board.title }
 					<c:if test="${not empty board.fileName}"> ${board.fileName }

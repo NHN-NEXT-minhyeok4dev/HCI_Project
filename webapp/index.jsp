@@ -21,7 +21,7 @@
 			</form>
 		</div>
 		<br><br>
-		<a href = "list_test.jsp">go to list</a>
+		<a href = "/board/list">go to list</a>
 	</div>
 </body>
 </html>
