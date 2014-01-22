@@ -55,7 +55,7 @@ h1,h2 {
 			<!-- #1  |  간략한 설명  | PDF -->
 			<c:forEach items="${board}" var="board"> ${board.title}<br />
 				<div id="article">
-					board.title => ${board.title }
+					board.title = ${board.title }
 					<c:if test="${not empty board.fileName}"> ${board.fileName }
 					</c:if>
 

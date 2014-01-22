@@ -15,7 +15,7 @@ HCI Project
 * <del>제목, 내용, 댓글 구조 형식의 DB</del>
 
 ### 전달사항(선진 --> 민혁)
-* HCI폴더에서 fab deploy 로 실행으로 배포 스크립트 완료
+* HCI폴더에서 fab deploy 로 실행으로 배포 스크립트 완료 (변경사항이 바로 적용 안되는경우 fab powerdeploy)
 * DB 연동 완료 /  Controller에서 모델 넘겨줘서 jsp페이지에서 활용하면 될듯
 * mysql - 계정 및 비번은 application-proporties에서 확인 가능
 
