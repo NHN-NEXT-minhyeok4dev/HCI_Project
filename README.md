@@ -17,7 +17,7 @@ HCI Project
 ### 전달사항(선진 --> 민혁)
 * HCI폴더에서 fab deploy 로 실행으로 배포 스크립트 완료
 * DB 연동 완료 /  Controller에서 모델 넘겨줘서 jsp페이지에서 활용하면 될듯
-* mysql - 계정 : HCI_admin 비번 : ttstts
+* mysql - 계정 및 비번은 application-proporties에서 확인 가능
 
 ### 전달사항(민혁 --> 선진)
 * 
