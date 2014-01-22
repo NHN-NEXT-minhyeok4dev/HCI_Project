@@ -20,6 +20,8 @@
 				<button type="button" name="cancel" onclick="location.href='/'">취소</button>
 			</form>
 		</div>
+		<br><br>
+		<a href = "list_test.jsp">go to list</a>
 	</div>
 </body>
 </html>
