@@ -18,10 +18,12 @@ public class Board {
 
 	@Column(length = 50, nullable = false)
 	private String title;
-	@Column(length = 1000, nullable = false)
-	private String contents;
 	@Column(length = 50, nullable = true)
 	private String fileName;
+	
+	// contents 는 지워도 될듯 합니다. pdf가 그 내용이니, 대신 owner를 넣으면 좋겠습니다.
+	@Column(length = 1000, nullable = false)
+	private String contents;
 
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<Comment> comments;

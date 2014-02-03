@@ -15,7 +15,7 @@
 			<form action="/board" method="POST" enctype="multipart/form-data">
 				<input type="text" name="title" size="45" placeholder="제목을 입력하세요"><br>
 				<textarea name="contents" rows="10" cols="40" placeholder="내용을 입력하세요"></textarea><br>
-				<input type="file" name="file" size ="20" accept="image/*" value="파일"><br>
+				<input type="file" name="file" size ="20" accept="application/pdf" value="파일"><br>
 				<input type="submit" value="제출">
 				<button type="button" name="cancel" onclick="location.href='/'">취소</button>
 			</form>

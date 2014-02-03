@@ -1,6 +1,7 @@
 package org.nhnnext.web;
 
 import org.nhnnext.repository.BoardRepository;
+import org.nhnnext.repository.CommentRepository;
 import org.nhnnext.support.FileUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ public class BoardController {
 
 	@Autowired
     private BoardRepository boardRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 	
 	@RequestMapping(value="/board", method=RequestMethod.POST)
 	public String create(Board board, MultipartFile file) {
@@ -26,9 +29,8 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/list")
 	public String loadArticle(Model model){
-		Iterable<Board> boards = boardRepository.findAll();
-		System.out.println("board : " + boards);
-		model.addAttribute("board", boards);
+		model.addAttribute("board", boardRepository.findAll());
+		model.addAttribute("comment", commentRepository.findAll());
 		
 		return "list_test";
 	}

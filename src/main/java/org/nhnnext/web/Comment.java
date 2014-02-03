@@ -13,6 +13,8 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(length = 50, nullable = true)
+	private String name;
+	@Column(length = 50, nullable = true)
 	private String contents;
 	@ManyToOne
 	private Board board;
@@ -31,6 +33,14 @@ public class Comment {
 
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getContents() {
