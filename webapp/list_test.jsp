@@ -107,7 +107,7 @@ function toggleFile(e){
 
 function checkrate(e) {
 	var checked = e.target.id;
-	debugger;
+	console.log(checked);
 	
 }
 
