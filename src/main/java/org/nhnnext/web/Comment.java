@@ -14,8 +14,13 @@ public class Comment {
 	private Long id;
 	@Column(length = 50, nullable = true)
 	private String name;
-	@Column(length = 50, nullable = true)
+	@Column(length = 500, nullable = true)
 	private String contents;
+	
+	// rating column 추가 
+	//@Column(nullable = true)
+	//private int rating;
+	
 	@ManyToOne
 	private Board board;
 
@@ -50,5 +55,7 @@ public class Comment {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+	
+	
 
 }
