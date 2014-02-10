@@ -87,6 +87,11 @@ function registerEvents(){
 	for(i=0;i<icnArr.length;i++){
 		icnArr[i].addEventListener('click', toggleFile, false);
 	}
+	// add event for rating
+	rating = document.getElementsByClassName('rating')
+	for(i=0;i<rating.length;i++){
+		rating[i].addEventListener('click', checkrate, false);
+	}
 }
 
 function toggleFile(e){
@@ -98,6 +103,12 @@ function toggleFile(e){
 	else if(document.querySelector("#file_" + e.target.id).style.display == "none"){
 		document.querySelector("#file_" + e.target.id).style.display = "";
 	}
+}
+
+function checkrate(e) {
+	var checked = e.target.id;
+	debugger;
+	
 }
 
 window.onload = registerEvents;
