@@ -15,6 +15,8 @@ HCI Project
 * <del>제목, 내용, 댓글 구조 형식의 DB</del>
 * User Repository 만들고 User별 데이터베이스 구축
 * Comment Controller 완성
+* 서버와 로컬에서 개발환경 문제 해결(다운받는 폴더 경로등의 문제)
+* pdf파일 실시간으로 업데이트 되도록 개선(현재 이클립스의 리프레쉬후 가능 -  서버에서 테스트 필요)
 
 ### 전달사항(선진 --> 민혁)
 * HCI폴더에서 fab deploy 로 실행으로 배포 스크립트 완료 (변경사항이 바로 적용 안되는경우 fab powerdeploy)
