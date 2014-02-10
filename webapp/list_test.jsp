@@ -41,7 +41,6 @@ h1,h2 {
 }
 
 .feedback {
-	width: 650px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 10px;
@@ -49,10 +48,37 @@ h1,h2 {
 	border: 1px solid black;
 }
 
-.icn_dropdown{
+.icn_dropdown {
 	width:25px;
 	margin:3px;
 }
+
+.rating {
+	width : 200px;
+	overflow: hidden;
+	display: inline-block;
+	text-align: right;
+	padding-top : 4px;
+}
+.rating-input {
+    position: absolute;
+    left: 0;
+    top: -50px;
+}
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+.rating-star,
+.rating:hover .rating-star {
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('../img/star.png') 0 -16px;
+}
+      
 </style>
 <script>
 function registerEvents(){
@@ -101,9 +127,29 @@ window.onload = registerEvents;
 				<c:forEach items="${comment}" var="comm">
 					<c:if test="${comm.board.id == board.id}">
 						<div class="feedback">
-							${comm.name} : ${comm.contents} <span
-								style="float: right; margin-right: 10px;"><input
-								type="range" name="points" min="1" max="5"></span>
+							${comm.name} : ${comm.contents} 
+							<span class="rating">
+								<input type="radio" class="rating-input" id="rating-input-1-10-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-10-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-1-9-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-9-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-1-8-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-8-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-1-7-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-7-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-1-6-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-6-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-1-5-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-5-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-1-4-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-4-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-1-3-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-3-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-1-2-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-2-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-1-1-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-1-${comm.id}" class="rating-star"></label>
+						    </span>
 						</div>
 					</c:if>
 				</c:forEach>
