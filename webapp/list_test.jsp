@@ -40,7 +40,9 @@ h1,h2 {
 	border: 1px solid black;
 }
 
-.feedback {
+
+.feedback{
+	width: 650px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 10px;
@@ -48,9 +50,17 @@ h1,h2 {
 	border: 1px solid black;
 }
 
-.icn_dropdown {
-	width:25px;
-	margin:3px;
+
+.new_comment{
+	width: 650px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}
+
+.icn_dropdown,.icn_comment{
+	width: 25px;
+	margin: 3px;
 }
 
 .rating {
@@ -81,27 +91,23 @@ h1,h2 {
       
 </style>
 <script>
-function registerEvents(){
+function registerEvents() {
 	// add event to icons
 	icnArr = document.getElementsByClassName('icn_dropdown')
-	for(i=0;i<icnArr.length;i++){
+	for (i = 0; i < icnArr.length; i++) {
 		icnArr[i].addEventListener('click', toggleFile, false);
 	}
-	// add event for rating
+
+
+	icnArr = document.getElementsByClassName('icn_comment')
+	for (i = 0; i < icnArr.length; i++) {
+		icnArr[i].addEventListener('click', toggleNewComment, false);
+	}
+	
+	//add event for rating
 	rating = document.getElementsByClassName('rating')
 	for(i=0;i<rating.length;i++){
 		rating[i].addEventListener('click', checkrate, false);
-	}
-}
-
-function toggleFile(e){
-	// if showing
-	if(document.querySelector("#file_" + e.target.id).style.display == ""){
-		document.querySelector("#file_" + e.target.id).style.display = "none";
-	}
-	// if not showing
-	else if(document.querySelector("#file_" + e.target.id).style.display == "none"){
-		document.querySelector("#file_" + e.target.id).style.display = "";
 	}
 }
 
@@ -111,7 +117,29 @@ function checkrate(e) {
 	
 }
 
-window.onload = registerEvents;
+function toggleFile(e) {
+	// if showing
+	if (document.querySelector("#file_" + e.target.id).style.display == "") {
+		document.querySelector("#file_" + e.target.id).style.display = "none";
+	}
+	// if not showing
+	else if (document.querySelector("#file_" + e.target.id).style.display == "none") {
+		document.querySelector("#file_" + e.target.id).style.display = "";
+	}
+}
+
+function toggleNewComment(e) {
+	// if showing
+	if (document.querySelector("#new_comment_" + e.target.id).style.display == "") {
+		document.querySelector("#new_comment_" + e.target.id).style.display = "none";
+	}
+	// if not showing
+	else if (document.querySelector("#new_comment_" + e.target.id).style.display == "none") {
+		document.querySelector("#new_comment_" + e.target.id).style.display = "";
+	}
+}
+
+	window.onload = registerEvents;
 </script>
 </head>
 
@@ -124,16 +152,29 @@ window.onload = registerEvents;
 		<div id="wrap_contents">
 			<c:forEach items="${board}" var="board">
 				<div class="article" id="article_${board.id}">
-					<span id="board_id">${board.id} >></span> ${board.title} <span style="float:right;margin-right:10px;"><img class="icn_dropdown" id="${board.id}" src = "/img/icn_dropdown.png"></span>
+					<span id="board_id">${board.id} >></span> ${board.title}
+					
+					<span style="float:right; margin-right: 10px;">
+						<img class="icn_dropdown" id="${board.id}" src="/img/icn_dropdown.png"></span>
+						<span style="float:right;"><img	class="icn_comment" id="${board.id}" src="/img/icn_comment.png"></span>
+					
 					<c:if test="${not empty board.fileName}">
-						
-						<object id ="file_${board.id}"
-							data="/pdf/${board.fileName}"
-							type="application/pdf" width="100%" height="600px" style="display:none"></object>
+
+						<object id="file_${board.id}" data="/pdf/${board.fileName}"
+							type="application/pdf" width="100%" height="600px"
+							style="display: none"></object>
 					</c:if>
 					<br>
 				</div>
-
+				
+				<div class="new_comment" id="new_comment_${board.id}" style="display:none">
+					<form action="/board/list/comment/${board.id}/upload" method="POST">
+						<textarea name="contents" style="width:600px" placeholder="리뷰 입력"></textarea>
+						<input type="submit" value="등록">
+						<br>
+					</form>
+				</div>
+				
 				<!--  feedback -->
 				<c:forEach items="${comment}" var="comm">
 					<c:if test="${comm.board.id == board.id}">
@@ -161,6 +202,7 @@ window.onload = registerEvents;
 						        <input type="radio" class="rating-input" id="rating-input-1-1-${comm.id}" name="rating-input-${comm.id}">
 						        <label for="rating-input-1-1-${comm.id}" class="rating-star"></label>
 						    </span>
+								<a href="/board/list/comment/${comm.id}/delete"><img class="icn_delete" id="${board.id}" src="/img/icn_delete.png" width="15px"></a></span>
 						</div>
 					</c:if>
 				</c:forEach>
