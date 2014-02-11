@@ -109,11 +109,22 @@ function registerEvents() {
 	for(i=0;i<rating.length;i++){
 		rating[i].addEventListener('click', checkrate, false);
 	}
+	
+	markoldrate();
+}
+
+function markoldrate() {
+	oldrate = document.getElementsByClassName('rating')
+	for(i=0;i<oldrate.length;i++){
+		var old = oldrate[i].title;
+		var eachcomment = oldrate[i].getElementsByClassName('rating-input');
+		eachcomment[eachcomment.length-old].checked = true;
+	}
 }
 
 function checkrate(e) {
 	var checked = e.target.id;
-	//var boardid = e.target.parentElement.id
+	
 	var checkedArray = checked.split('-');
 	var commentid = checkedArray[3];
 	var rate = checkedArray[2];
@@ -191,7 +202,7 @@ function toggleNewComment(e) {
 					<c:if test="${comm.board.id == board.id}">
 						<div class="feedback">
 							${comm.name} : ${comm.contents} 
-							<span class="rating" id="${board.id}">
+							<span class="rating" id="${board.id}" title="${comm.rating}">
 								<input type="radio" class="rating-input" id="rating-input-10-${comm.id}" name="rating-input-${comm.id}">
 						        <label for="rating-input-10-${comm.id}" class="rating-star"></label>
 								<input type="radio" class="rating-input" id="rating-input-9-${comm.id}" name="rating-input-${comm.id}">
