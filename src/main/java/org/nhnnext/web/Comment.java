@@ -14,7 +14,7 @@ public class Comment {
 	private Long id;
 	@Column(length = 50, nullable = true)
 	private String name;
-	@Column(length = 500, nullable = true)
+	@Column(length = 5000, nullable = true)
 	private String contents;	
 	@Column(nullable = false, columnDefinition = "int default 0")
 	private int rating;
