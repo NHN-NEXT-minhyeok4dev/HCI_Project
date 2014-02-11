@@ -105,7 +105,7 @@ function registerEvents() {
 	}
 	
 	//add event for rating
-	rating = document.getElementsByClassName('rating')
+	rating = document.getElementsByClassName('rating-input')
 	for(i=0;i<rating.length;i++){
 		rating[i].addEventListener('click', checkrate, false);
 	}
@@ -113,8 +113,11 @@ function registerEvents() {
 
 function checkrate(e) {
 	var checked = e.target.id;
-	console.log(checked);
-	
+	var checkedArray = checked.split('-');
+	var commentid = checkedArray[3];
+	var rate = checkedArray[2];
+	console.log(commentid);
+	console.log(rate);
 }
 
 function toggleFile(e) {
@@ -181,28 +184,29 @@ function toggleNewComment(e) {
 						<div class="feedback">
 							${comm.name} : ${comm.contents} 
 							<span class="rating">
-								<input type="radio" class="rating-input" id="rating-input-1-10-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-10-${comm.id}" class="rating-star"></label>
-								<input type="radio" class="rating-input" id="rating-input-1-9-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-9-${comm.id}" class="rating-star"></label>
-								<input type="radio" class="rating-input" id="rating-input-1-8-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-8-${comm.id}" class="rating-star"></label>
-								<input type="radio" class="rating-input" id="rating-input-1-7-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-7-${comm.id}" class="rating-star"></label>
-								<input type="radio" class="rating-input" id="rating-input-1-6-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-6-${comm.id}" class="rating-star"></label>
-						        <input type="radio" class="rating-input" id="rating-input-1-5-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-5-${comm.id}" class="rating-star"></label>
-						        <input type="radio" class="rating-input" id="rating-input-1-4-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-4-${comm.id}" class="rating-star"></label>
-						        <input type="radio" class="rating-input" id="rating-input-1-3-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-3-${comm.id}" class="rating-star"></label>
-						        <input type="radio" class="rating-input" id="rating-input-1-2-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-2-${comm.id}" class="rating-star"></label>
-						        <input type="radio" class="rating-input" id="rating-input-1-1-${comm.id}" name="rating-input-${comm.id}">
-						        <label for="rating-input-1-1-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-10-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-10-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-9-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-9-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-8-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-8-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-7-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-7-${comm.id}" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="rating-input-6-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-6-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-5-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-5-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-4-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-4-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-3-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-3-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-2-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-2-${comm.id}" class="rating-star"></label>
+						        <input type="radio" class="rating-input" id="rating-input-1-${comm.id}" name="rating-input-${comm.id}">
+						        <label for="rating-input-1-${comm.id}" class="rating-star"></label>
 						    </span>
-								<a href="/board/list/comment/${comm.id}/delete"><img class="icn_delete" id="${board.id}" src="/img/icn_delete.png" width="15px"></a></span>
+								<a href="/board/list/comment/${comm.id}/delete"><img class="icn_delete" id="${board.id}" 
+								src="/img/icn_delete.png" width="15px"></a></span>
 						</div>
 					</c:if>
 				</c:forEach>
