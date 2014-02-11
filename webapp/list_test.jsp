@@ -113,11 +113,19 @@ function registerEvents() {
 
 function checkrate(e) {
 	var checked = e.target.id;
+	//var boardid = e.target.parentElement.id
 	var checkedArray = checked.split('-');
 	var commentid = checkedArray[3];
 	var rate = checkedArray[2];
-	console.log(commentid);
-	console.log(rate);
+	var url = "list/comment/rateupload";
+	
+	var formdata = new FormData();
+	formdata.append('commentid', commentid);
+	formdata.append('rate', rate);
+	
+	var request = new XMLHttpRequest();
+	request.open("POST" , url, true);
+	request.send(formdata);
 }
 
 function toggleFile(e) {
@@ -183,7 +191,7 @@ function toggleNewComment(e) {
 					<c:if test="${comm.board.id == board.id}">
 						<div class="feedback">
 							${comm.name} : ${comm.contents} 
-							<span class="rating">
+							<span class="rating" id="${board.id}">
 								<input type="radio" class="rating-input" id="rating-input-10-${comm.id}" name="rating-input-${comm.id}">
 						        <label for="rating-input-10-${comm.id}" class="rating-star"></label>
 								<input type="radio" class="rating-input" id="rating-input-9-${comm.id}" name="rating-input-${comm.id}">

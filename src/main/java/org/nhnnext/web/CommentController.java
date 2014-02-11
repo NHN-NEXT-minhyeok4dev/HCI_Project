@@ -29,6 +29,17 @@ public class CommentController {
 		return "redirect:/board/list";
 	}
 	
+	@RequestMapping(value = "/rateupload", method = RequestMethod.POST)
+	public String rateupload(Long commentid, int rate) {
+		Comment comment = new Comment();
+		comment = commentRepository.findOne(commentid);
+		
+		comment.setRating(rate);
+		
+		commentRepository.save(comment);
+		return "redirect:/board/list";
+	}
+	
 	@RequestMapping(value = "/{commentID}/delete")
 	public String delete(@PathVariable Long commentID, Comment comment) {		
 		commentRepository.delete(commentID);

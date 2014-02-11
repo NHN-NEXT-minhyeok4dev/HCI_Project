@@ -15,12 +15,10 @@ public class Comment {
 	@Column(length = 50, nullable = true)
 	private String name;
 	@Column(length = 500, nullable = true)
-	private String contents;
-	
-	// rating column 추가 
-	//@Column(nullable = true)
-	//private int rating;
-	
+	private String contents;	
+	@Column(nullable = false, columnDefinition = "int default 0")
+	private int rating;
+
 	@ManyToOne
 	private Board board;
 
@@ -56,6 +54,12 @@ public class Comment {
 		this.contents = contents;
 	}
 	
-	
+	public int getRating() {
+		return rating;
+	}
 
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
 }
