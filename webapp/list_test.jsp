@@ -292,10 +292,6 @@ function markoldrate() {
 		var eachcomment = oldrate[i].getElementsByClassName('rating-input');
 		if(old != 0) {
 			eachcomment[eachcomment.length-old].checked = true;
-		} else {
-			for(i=0;i<10;i++){
-				eachcomment[i].checked = false;
-			}
 		}
 	}
 }
