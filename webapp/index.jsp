@@ -11,6 +11,9 @@
 <title>HCI_Project</title>
 </head>
 <body>
+	<c:if test="${not empty error}">
+		${error}
+	</c:if>
 	<div>
 		<a href = "/main">go to main</a><br>
 		<a href = "/login_page">go to login</a><br>

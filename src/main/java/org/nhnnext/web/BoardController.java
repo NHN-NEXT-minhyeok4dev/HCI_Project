@@ -60,6 +60,10 @@ public class BoardController {
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
 		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("member", memberrepository.findAll());
 		return "main";

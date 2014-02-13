@@ -12,6 +12,7 @@
 </head>
 <body>
 	<div>
+		${user.name}님 환영합니다.<br>
 		<c:forEach items="${member}" var="member">
 			<a href = "/board/list/${member.userid}">${member.name}</a><br>
 		</c:forEach>
