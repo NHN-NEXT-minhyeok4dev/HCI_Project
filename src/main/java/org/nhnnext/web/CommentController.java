@@ -7,6 +7,7 @@ import org.nhnnext.repository.CommentRepository;
 import org.nhnnext.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,9 +52,17 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value = "/{commentID}/delete")
-	public String delete(@PathVariable Long commentID, Comment comment) {		
-		commentRepository.delete(commentID);
+	public String delete(@PathVariable Long commentID, Model model, HttpSession session) {		
+		String commentuser = commentRepository.findOne(commentID).getUser_comment().getUserid();
+		String userid = (String)session.getAttribute("userid");
+		String link = commentRepository.findOne(commentID).getBoard().getUser_board().getUserid();
 		
-		return "redirect:/board/list";
+		if(!commentuser.equals(userid)) {
+			model.addAttribute("error", "삭제권한이 없습니다.");
+			return "index";
+		}
+		
+		commentRepository.delete(commentID);
+		return "redirect:/board/list/" + link;
 	}
 }

@@ -93,6 +93,7 @@ h1,h2 {
 </style>
 <script>
 function registerEvents() {
+	
 	// add event to icons
 	icnArr = document.getElementsByClassName('icn_dropdown')
 	for (i = 0; i < icnArr.length; i++) {
@@ -126,20 +127,26 @@ function markoldrate() {
 }
 
 function checkrate(e) {
-	var checked = e.target.id;
+	if("${member.userid}" == "${user.userid}") {
+		var checked = e.target.id;
+		
+		var checkedArray = checked.split('-');
+		var commentid = checkedArray[3];
+		var rate = checkedArray[2];
+		var url = "comment/rateupload";
+		
+		var formdata = new FormData();
+		formdata.append('commentid', commentid);
+		formdata.append('rate', rate);
+		
+		var request = new XMLHttpRequest();
+		request.open("POST" , url, true);
+		request.send(formdata);
+	} else {
+		alert("권한이 없습니다.");
+		markoldrate();
+	}
 	
-	var checkedArray = checked.split('-');
-	var commentid = checkedArray[3];
-	var rate = checkedArray[2];
-	var url = "comment/rateupload";
-	
-	var formdata = new FormData();
-	formdata.append('commentid', commentid);
-	formdata.append('rate', rate);
-	
-	var request = new XMLHttpRequest();
-	request.open("POST" , url, true);
-	request.send(formdata);
 }
 
 function toggleFile(e) {
@@ -197,7 +204,7 @@ function fncSubmit(num)
 		${user.name}님 환영합니다. 
 		<a href = "/logout">logout</a><br><br>
 		<h1>HCI 프로젝트 계획서 제목</h1>
-		<h2>설명을 적습니다. - NHN NEXT  ${member.name} </h2>
+		<h2>설명을 적습니다. - NHN NEXT  ${member.name}님의 PAGE </h2>
 		<a href = "/write">go to write</a><br>
 		<a href = "/main">go to main</a><br>
 		<!-- 글의 한 세트 !-->
