@@ -4,12 +4,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
-<link rel="stylesheet" type="text/css" href="./stylesheets/reset.css">
 <title>HCI Project List Page (Test)</title>
+<style>
+body {
+	background-color: #EAEAEA;
+}
+
+#wrap_body {
+	width: 800px;
+	background-color: #F3F3F3;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px dashed black;
+}
+
+h1,h2 {
+	text-align: center;
+}
+
+#board_id {
+	color: #F15F5F;
+}
+
+#wrap_contents {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+} 
+</style>
+</head>
 </head>
 <body>
-<div id="wrap">
+<div id="wrap_body">
 	<header>
 		<h1>Login</h1>
 	</header>

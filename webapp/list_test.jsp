@@ -93,7 +93,6 @@ h1,h2 {
 </style>
 <script>
 function registerEvents() {
-	
 	// add event to icons
 	icnArr = document.getElementsByClassName('icn_dropdown')
 	for (i = 0; i < icnArr.length; i++) {

@@ -59,7 +59,7 @@ public class CommentController {
 		
 		if(!commentuser.equals(userid)) {
 			model.addAttribute("error", "삭제권한이 없습니다.");
-			return "index";
+			return "redirect:/board/list/" + link;
 		}
 		
 		commentRepository.delete(commentID);
