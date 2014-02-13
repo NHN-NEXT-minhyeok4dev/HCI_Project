@@ -162,6 +162,33 @@ function toggleNewComment(e) {
 	}
 }
 
+
+/* function fncEnCode(param)
+{
+var encode = '';
+
+for(i=0; i<param.length; i++)
+{
+var len  = ''+param.charCodeAt(i);
+var token = '' + len.length;
+encode  += token + param.charCodeAt(i);
+}
+
+return encode;
+}
+
+function fncSubmit(num)
+{
+	var fm = document.getElementById('new_comment_' + num).children[0];
+	var raw = fm.contents.value;
+	debugger;
+    raw = fncEnCode(raw);
+    console.log(raw);
+    fm.submit();
+} */
+
+
+
 	window.onload = registerEvents;
 </script>
 </head>
@@ -191,7 +218,7 @@ function toggleNewComment(e) {
 				</div>
 				
 				<div class="new_comment" id="new_comment_${board.id}" style="display:none">
-					<form action="/board/list/comment/${board.id}/upload" method="POST">
+					<form name="new_comment_form" action="/board/list/comment/${board.id}/upload"  method="POST">
 						<textarea name="contents" style="width:600px" placeholder="리뷰 입력"></textarea>
 						<input type="submit" value="등록">
 						<br>

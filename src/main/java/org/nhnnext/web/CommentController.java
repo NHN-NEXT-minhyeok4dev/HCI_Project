@@ -35,7 +35,7 @@ public class CommentController {
 		comment = commentRepository.findOne(commentid);
 		
 		comment.setRating(rate);
-		
+		System.out.println(comment.getContents());
 		commentRepository.save(comment);
 		return "redirect:/board/list";
 	}
