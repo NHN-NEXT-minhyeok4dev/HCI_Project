@@ -58,5 +58,12 @@ public class LoginController {
 		}
 
 		return "redirect:/board/list/" + link;
-	} 
+	}
+	
+	@RequestMapping("/logout")
+    public String logout(HttpSession session) {
+		session.removeAttribute("userid");
+		session.removeAttribute("name");
+		return "index";
+    }
 }

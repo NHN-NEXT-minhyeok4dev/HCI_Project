@@ -194,6 +194,8 @@ function fncSubmit(num)
 
 <body>
 	<div id="wrap_body">
+		${user.name}님 환영합니다. 
+		<a href = "/logout">logout</a><br><br>
 		<h1>HCI 프로젝트 계획서 제목</h1>
 		<h2>설명을 적습니다. - NHN NEXT  ${member.name} </h2>
 		<a href = "/write">go to write</a><br>

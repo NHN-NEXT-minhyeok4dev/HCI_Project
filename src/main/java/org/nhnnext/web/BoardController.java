@@ -50,6 +50,7 @@ public class BoardController {
 				result.add(board);
 			}
 		}
+		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("board", result);
 		model.addAttribute("member", memberrepository.findOne(id));
 		model.addAttribute("comment", commentRepository.findAll());
