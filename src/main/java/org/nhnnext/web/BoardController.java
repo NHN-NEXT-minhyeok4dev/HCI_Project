@@ -1,6 +1,7 @@
 package org.nhnnext.web;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -50,10 +51,16 @@ public class BoardController {
 				result.add(board);
 			}
 		}
+		
+		Collections.reverse(result);
+		
+		List<Comment> r_comment = (List<Comment>) commentRepository.findAll();
+		Collections.reverse(r_comment);
+		
 		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("board", result);
 		model.addAttribute("member", memberrepository.findOne(id));
-		model.addAttribute("comment", commentRepository.findAll());
+		model.addAttribute("comment", r_comment);
 		
 		return "list_test";
 	}
