@@ -66,6 +66,8 @@ h2 {
 	font-size: 25px;
 	margin-bottom: 10px;
 	border: 1px solid black; */
+	font-weight: bold;
+	font-size: 18px;
 	
 	box-shadow: 0 1px 0 #f5f5f5 inset;
 	-webkit-transition: all 0.5s linear;
@@ -83,8 +85,9 @@ h2 {
 	margin-right: auto;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	font-size: 14px;
 	
-	padding: 5px 10px 5px 30px;
+	padding: 10px 10px 5px 30px;
 	
 	box-shadow: 0 1px 0 #f5f5f5 inset;
 	-webkit-transition: all 0.5s linear;
