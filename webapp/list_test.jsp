@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -69,6 +69,7 @@ h1,h2 {
 	display: inline-block;
 	text-align: right;
 	padding-top : 4px;
+	padding-bottom : 1px;
 }
 .rating-input {
     position: absolute;
@@ -167,10 +168,10 @@ function toggleNewComment(e) {
 
 <body>
 	<div id="wrap_body">
-		<h1>HCI ÇÁ·ÎÁ§Æ® °èÈ¹¼­ Á¦¸ñ</h1>
-		<h2>¼³¸íÀ» Àû½À´Ï´Ù. - NHN NEXT ±è¹ÎÇõ</h2>
+		<h1>HCI í”„ë¡œì íŠ¸ ê³„íšì„œ ì œëª©</h1>
+		<h2>ì„¤ëª…ì„ ì ìŠµë‹ˆë‹¤. - NHN NEXT ê¹€ë¯¼í˜</h2>
 
-		<!-- ±ÛÀÇ ÇÑ ¼¼Æ® !-->
+		<!-- ê¸€ì˜ í•œ ì„¸íŠ¸ !-->
 		<div id="wrap_contents">
 			<c:forEach items="${board}" var="board">
 				<div class="article" id="article_${board.id}">
@@ -191,8 +192,8 @@ function toggleNewComment(e) {
 				
 				<div class="new_comment" id="new_comment_${board.id}" style="display:none">
 					<form action="/board/list/comment/${board.id}/upload" method="POST">
-						<textarea name="contents" style="width:600px" placeholder="¸®ºä ÀÔ·Â"></textarea>
-						<input type="submit" value="µî·Ï">
+						<textarea name="contents" style="width:600px" placeholder="ë¦¬ë·° ì…ë ¥"></textarea>
+						<input type="submit" value="ë“±ë¡">
 						<br>
 					</form>
 				</div>
