@@ -28,7 +28,7 @@ HCI Project
 ### 전달사항(선진 --> 민혁)
 
 ### 전달사항(민혁 --> 선진)
-* 한글 인코딩 문제 : Mysql DB 인코딩 세팅을 UTF8로 해주어야 함. 상당히 복잡해요... 참조 : http://croute.tistory.com/606
+* (이미 처리) 한글 인코딩 문제 : Mysql DB 인코딩 세팅을 UTF8로 해주어야 함. 서버(/etc/mysql/my.cnf) 참조 : http://croute.tistory.com/606
 * 코멘트 UI를 어떻게 개선할까요?
 
 ### 서버관련
