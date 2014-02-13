@@ -12,8 +12,6 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column(length = 50, nullable = true)
-	private String name;
 	@Column(length = 5000, nullable = true)
 	private String contents;	
 	@Column(nullable = false, columnDefinition = "int default 0")
@@ -21,6 +19,17 @@ public class Comment {
 
 	@ManyToOne
 	private Board board;
+	
+	@ManyToOne
+	private Member user_comment;
+
+	public Member getUser_comment() {
+		return user_comment;
+	}
+
+	public void setUser_comment(Member user_comment) {
+		this.user_comment = user_comment;
+	}
 
 	public Board getBoard() {
 		return board;
@@ -36,14 +45,6 @@ public class Comment {
 
 	public void setBoard(Board board) {
 		this.board = board;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getContents() {

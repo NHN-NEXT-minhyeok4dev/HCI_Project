@@ -196,8 +196,8 @@ function fncSubmit(num)
 <body>
 	<div id="wrap_body">
 		<h1>HCI 프로젝트 계획서 제목</h1>
-		<h2>설명을 적습니다. - NHN NEXT 김민혁</h2>
-
+		<h2>설명을 적습니다. - NHN NEXT ${sessionScope.name}</h2>
+		<a href = "/write">go to write</a><br>
 		<!-- 글의 한 세트 !-->
 		<div id="wrap_contents">
 			<c:forEach items="${board}" var="board">
@@ -229,7 +229,7 @@ function fncSubmit(num)
 				<c:forEach items="${comment}" var="comm">
 					<c:if test="${comm.board.id == board.id}">
 						<div class="feedback">
-							${comm.name} : ${comm.contents} 
+							${comm.user_comment.name} : ${comm.contents} 
 							<span class="rating" id="${board.id}" title="${comm.rating}">
 								<input type="radio" class="rating-input" id="rating-input-10-${comm.id}" name="rating-input-${comm.id}">
 						        <label for="rating-input-10-${comm.id}" class="rating-star"></label>

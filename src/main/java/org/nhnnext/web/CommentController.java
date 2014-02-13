@@ -1,7 +1,10 @@
 package org.nhnnext.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.nhnnext.repository.BoardRepository;
 import org.nhnnext.repository.CommentRepository;
+import org.nhnnext.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,14 +19,17 @@ public class CommentController {
 	private CommentRepository commentRepository;
 	@Autowired
 	private BoardRepository boardRepository;
+	@Autowired
+	private MemberRepository memberrepository;
 	
 	@RequestMapping(value = "/{boardID}/upload", method = RequestMethod.POST)
-	public String upload(@PathVariable Long boardID, Comment comment) {
+	public String upload(@PathVariable Long boardID, Comment comment, HttpSession session) {
 		Board board = boardRepository.findOne(boardID);
 		comment.setBoard(board);
 		
-		// test 유저부분 건드려야함.
-		comment.setName("usr1");
+		String userid = (String)session.getAttribute("userid");
+		Member member = memberrepository.findOne(userid);
+		comment.setUser_comment(member);
 		
 		commentRepository.save(comment);
 		return "redirect:/board/list";

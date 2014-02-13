@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,14 +21,22 @@ public class Board {
 	private String title;
 	@Column(length = 50, nullable = true)
 	private String fileName;
-	
-	// contents 는 지워도 될듯 합니다. pdf가 그 내용이니, 대신 owner를 넣으면 좋겠습니다.
-	@Column(length = 1000, nullable = false)
-	private String contents;
 
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<Comment> comments;
 	
+	@ManyToOne
+	private Member user_board;
+	
+
+	public Member getUser_board() {
+		return user_board;
+	}
+
+	public void setUser_board(Member user_board) {
+		this.user_board = user_board;
+	}
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -56,16 +65,8 @@ public class Board {
 		this.title = title;
 	}
 
-	public String getContents() {
-		return contents;
-	}
-
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-
 	@Override
 	public String toString() {
-		return "Board [title=" + title + ", contents=" + contents + "]";
+		return "Board [title=" + title + "]";
 	}
 }

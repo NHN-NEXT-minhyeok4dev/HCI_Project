@@ -1,11 +1,15 @@
 package org.nhnnext.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.nhnnext.repository.BoardRepository;
 import org.nhnnext.repository.CommentRepository;
+import org.nhnnext.repository.MemberRepository;
 import org.nhnnext.support.FileUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,21 +21,40 @@ public class BoardController {
     private BoardRepository boardRepository;
 	@Autowired
 	private CommentRepository commentRepository;
+	@Autowired
+	private MemberRepository memberrepository;
 	
 	@RequestMapping(value="/board", method=RequestMethod.POST)
-	public String create(Board board, MultipartFile file) {
+	public String create(Board board, MultipartFile file, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		Member member = memberrepository.findOne(userid);
 		FileUploader.upload(file);
-		System.out.println("board:"+ board);
-		 board.setFileName(file.getOriginalFilename());
+		board.setUser_board(member);
+		board.setFileName(file.getOriginalFilename());
+		
 		boardRepository.save(board);
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/board/list")
-	public String loadArticle(Model model){
+	@RequestMapping(value="/board/list/{id}")
+	public String loadArticle(@PathVariable String id, Model model, HttpSession session){
+		String userid = (String)session.getAttribute("userid");
+		Member member = memberrepository.findOne(id);
 		model.addAttribute("board", boardRepository.findAll());
 		model.addAttribute("comment", commentRepository.findAll());
 		
 		return "list_test";
+	}
+	
+	@RequestMapping("/main")
+	public String main(Model model) {
+		model.addAttribute("member", memberrepository.findAll());
+		System.out.println(memberrepository.findAll());
+		return "main";
+	}
+	
+	@RequestMapping("/write")
+	public String write() {
+		return "write";
 	}
 }

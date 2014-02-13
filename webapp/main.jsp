@@ -12,9 +12,9 @@
 </head>
 <body>
 	<div>
-		<a href = "/main">go to main</a><br>
-		<a href = "/login_page">go to login</a><br>
-		<a href = "/signin_page">go to signin</a><br>
+		<c:forEach items="${member}" var="member">
+			<a href = "/board/list/${member.userid}">${member.name}</a><br>
+		</c:forEach>
 	</div>
 </body>
 </html>
