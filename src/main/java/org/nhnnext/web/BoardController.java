@@ -36,7 +36,7 @@ public class BoardController {
 		board.setFileName(file.getOriginalFilename());
 		
 		boardRepository.save(board);
-		return "redirect:/";
+		return "redirect:/board/list/" + userid;
 	}
 	
 	@RequestMapping(value="/board/list/{id}")
