@@ -71,7 +71,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/write")
-	public String write() {
+	public String write(Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		model.addAttribute("user", memberrepository.findOne(userid));
+		
 		return "write";
 	}
 }

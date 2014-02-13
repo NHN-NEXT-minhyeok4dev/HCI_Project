@@ -83,7 +83,7 @@ header a{
 	display: inline-block;
 	margin: 0 2px;
 	border-radius: 4px;
-	padding: 2px 15px;
+	padding: 2px 5px;
 	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
 	font-weight: bold;
 	font-size: 13px;
@@ -96,6 +96,7 @@ header a{
 	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	text-decoration: none;
 }
 </style>
 </head>

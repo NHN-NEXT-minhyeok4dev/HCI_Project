@@ -9,6 +9,12 @@
 <style>
 body {
 	background-color: #EAEAEA;
+	font-weight: 400;
+	font-size: 15px;
+	color: #333;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 #wrap_body {
@@ -19,8 +25,30 @@ body {
 	border: 1px dashed black;
 }
 
-h1,h2 {
-	text-align: center;
+h1 {
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-size: 40px;
+	line-height: 40px;
+	margin: 0;
+	position: relative;
+	font-weight: 300;
+	color: #498ea5;
+	padding: 5px 0px;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+	text-align : center;
+}
+
+h2 {
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-size: 14px;
+	font-weight: 300;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 15px 0 5px 0;
+	color: #6190ca;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+	text-align : center;
 }
 
 #board_id {
@@ -74,7 +102,7 @@ h1,h2 {
 .rating-input {
     position: absolute;
     left: 0;
-    top: -50px;
+    top: -250px;
 }
 .rating:hover .rating-star:hover,
 .rating:hover .rating-star:hover ~ .rating-star,
@@ -89,6 +117,51 @@ h1,h2 {
     height: 16px;
     background: url('/img/star.png') 0 -16px;
 }
+
+
+.wrapper {
+	width: 94%;
+	max-width: 700px;
+	min-width: 280px;
+	margin: 30px auto 30px auto;
+	background: #fff no-repeat 99% 30px;
+	position: relative;
+	padding: 20px;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+}
+
+header{
+	margin: 10px;
+	padding: 20px 10px 10px 10px;
+	position: relative;
+	display: block;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+header a{
+    border: 1px solid #EF9309;
+	text-shadow: 0px 1px 1px rgba();
+	color: #fff;
+	display: inline-block;
+	margin: 0 0;
+	border-radius: 4px;
+	padding: 2px 5px;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
+	font-weight: bold;
+	font-size: 13px;
+	background: #ffaf4b;
+	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a));
+	background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	text-decoration: none;
+}
+
       
 </style>
 <script>
@@ -199,13 +272,18 @@ function fncSubmit(num)
 </head>
 
 <body>
-	<div id="wrap_body">
-		${user.name}님 환영합니다. 
-		<a href = "/logout">logout</a><br><br>
-		<h1>HCI 프로젝트 계획서 제목</h1>
-		<h2>설명을 적습니다. - NHN NEXT  ${member.name}님의 PAGE </h2>
-		<a href = "/write">go to write</a><br>
-		<a href = "/main">go to main</a><br>
+<div id="wrap_body">
+		<header>
+		${user.name}님 환영합니다.
+		<a href = "/main">Main</a>
+		<a href = "/write">Write</a>
+		<a href = "/logout">Logout</a>
+		</header>
+	<section class = "wrapper">
+		<h1>HCI Project</h1>
+		<h2>${member.userid}(${member.name})'s PAGE </h2>
+		
+		
 		<!-- 글의 한 세트 !-->
 		<div id="wrap_contents">
 			<c:forEach items="${board}" var="board">
@@ -269,6 +347,7 @@ function fncSubmit(num)
 			</c:forEach>
 
 		</div>
-	</div>
+	</section>
+</div>
 </body>
 </html>
