@@ -44,11 +44,13 @@ public class LoginController {
 		member = memberrepository.findOne(userid);
 		//예외처리
 		
+		String link = member.getUserid();
+		
 		if(member.getPassword().equals(password)) {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("name", member.getName());
 		}
 
-		return "redirect:/board/list";
+		return "redirect:/board/list/" + link;
 	} 
 }

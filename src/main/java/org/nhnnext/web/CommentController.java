@@ -31,8 +31,10 @@ public class CommentController {
 		Member member = memberrepository.findOne(userid);
 		comment.setUser_comment(member);
 		
+		String link = comment.getBoard().getUser_board().getUserid();
+		
 		commentRepository.save(comment);
-		return "redirect:/board/list";
+		return "redirect:/board/list/" + link;
 	}
 	
 	@RequestMapping(value = "/rateupload", method = RequestMethod.POST)
@@ -40,10 +42,12 @@ public class CommentController {
 		Comment comment = new Comment();
 		comment = commentRepository.findOne(commentid);
 		
+		String link = comment.getBoard().getUser_board().getUserid();
+		
 		comment.setRating(rate);
 		System.out.println(comment.getContents());
 		commentRepository.save(comment);
-		return "redirect:/board/list";
+		return "redirect:/board/list/" + link;
 	}
 	
 	@RequestMapping(value = "/{commentID}/delete")

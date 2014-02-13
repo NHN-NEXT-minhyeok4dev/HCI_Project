@@ -1,5 +1,8 @@
 package org.nhnnext.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.nhnnext.repository.BoardRepository;
@@ -40,16 +43,25 @@ public class BoardController {
 	public String loadArticle(@PathVariable String id, Model model, HttpSession session){
 		String userid = (String)session.getAttribute("userid");
 		Member member = memberrepository.findOne(id);
-		model.addAttribute("board", boardRepository.findAll());
+		List<Board> boards = (List<Board>) boardRepository.findAll();
+		List<Board> result = new ArrayList<Board>();
+		for(Board board : boards) {
+			if(member.getUserid().equals(board.getUser_board().getUserid())) {
+				result.add(board);
+			}
+		}
+		model.addAttribute("board", result);
+		model.addAttribute("member", memberrepository.findOne(id));
 		model.addAttribute("comment", commentRepository.findAll());
 		
 		return "list_test";
 	}
 	
 	@RequestMapping("/main")
-	public String main(Model model) {
+	public String main(Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("member", memberrepository.findAll());
-		System.out.println(memberrepository.findAll());
 		return "main";
 	}
 	

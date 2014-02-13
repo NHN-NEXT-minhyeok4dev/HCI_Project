@@ -87,7 +87,7 @@ h1,h2 {
     display: block;
     width: 16px;
     height: 16px;
-    background: url('../img/star.png') 0 -16px;
+    background: url('/img/star.png') 0 -16px;
 }
       
 </style>
@@ -119,7 +119,9 @@ function markoldrate() {
 	for(i=0;i<oldrate.length;i++){
 		var old = oldrate[i].title;
 		var eachcomment = oldrate[i].getElementsByClassName('rating-input');
-		eachcomment[eachcomment.length-old].checked = true;
+		if(old != 0) {
+			eachcomment[eachcomment.length-old].checked = true;
+		}
 	}
 }
 
@@ -129,7 +131,7 @@ function checkrate(e) {
 	var checkedArray = checked.split('-');
 	var commentid = checkedArray[3];
 	var rate = checkedArray[2];
-	var url = "list/comment/rateupload";
+	var url = "comment/rateupload";
 	
 	var formdata = new FormData();
 	formdata.append('commentid', commentid);
@@ -186,9 +188,6 @@ function fncSubmit(num)
     console.log(raw);
     fm.submit();
 } */
-
-
-
 	window.onload = registerEvents;
 </script>
 </head>
@@ -196,8 +195,9 @@ function fncSubmit(num)
 <body>
 	<div id="wrap_body">
 		<h1>HCI 프로젝트 계획서 제목</h1>
-		<h2>설명을 적습니다. - NHN NEXT ${sessionScope.name}</h2>
+		<h2>설명을 적습니다. - NHN NEXT  ${member.name} </h2>
 		<a href = "/write">go to write</a><br>
+		<a href = "/main">go to main</a><br>
 		<!-- 글의 한 세트 !-->
 		<div id="wrap_contents">
 			<c:forEach items="${board}" var="board">
