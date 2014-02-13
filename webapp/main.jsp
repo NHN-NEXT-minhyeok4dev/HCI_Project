@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HCI_Project</title>
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 body {
 	background-color: #EAEAEA;
 }
@@ -84,8 +86,7 @@ header a{
 	margin: 0 2px;
 	border-radius: 4px;
 	padding: 2px 5px;
-	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
-	font-weight: bold;
+	font-family: "Nanum Gothic", Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	font-size: 13px;
 	background: #ffaf4b;
 	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);

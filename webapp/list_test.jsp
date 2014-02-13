@@ -7,10 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HCI Project List Page (Test)</title>
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 body {
 	background-color: #EAEAEA;
 	font-weight: 400;
 	font-size: 15px;
+	font-family: "Nanum Gothic"
 	color: #333;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
@@ -39,7 +42,7 @@ h1 {
 }
 
 h2 {
-	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-family: "Nanum Gothic", Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	font-size: 14px;
 	font-weight: 300;
 	letter-spacing: 2px;
@@ -68,7 +71,7 @@ h2 {
 	border: 1px solid black; */
 	font-weight: bold;
 	font-size: 18px;
-	
+	font-family: "Nanum Gothic";
 	box-shadow: 0 1px 0 #f5f5f5 inset;
 	-webkit-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
@@ -84,9 +87,9 @@ h2 {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-bottom: 20px;
 	font-size: 14px;
-	
+	font-family: "Nanum Gothic";
 	padding: 10px 10px 5px 30px;
 	
 	box-shadow: 0 1px 0 #f5f5f5 inset;
@@ -198,7 +201,7 @@ header a{
 	margin: 0 0;
 	border-radius: 4px;
 	padding: 2px 5px;
-	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
+	font-family: "Nanum Gothic", Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
 	font-weight: bold;
 	font-size: 13px;
 	background: #ffaf4b;
@@ -242,7 +245,7 @@ input[type="submit"], button[type="button"] {
 	margin-left: 0px;
 	margin-bottom: 20px;
 	padding: 6px 15px;
-	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-family: "Nanum Gothic", Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	font-weight: bold;
 	background: #ffaf4b;
 	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
