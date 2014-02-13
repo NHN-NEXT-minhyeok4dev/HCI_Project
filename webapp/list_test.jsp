@@ -62,37 +62,85 @@ h2 {
 }
 
 .article {
-	text-indent: 20px;
+/* 	text-indent: 20px;
 	font-size: 25px;
 	margin-bottom: 10px;
-	border: 1px solid black;
+	border: 1px solid black; */
+	
+	box-shadow: 0 1px 0 #f5f5f5 inset;
+	-webkit-transition: all 0.5s linear;
+	-moz-transition: all 0.5s linear;
+	-o-transition: all 0.5s linear;
+	-ms-transition: all 0.5s linear;
+	transition: all 0.5s linear;
+	
+	padding: 15px 20px 15px 20px;
 }
-
 
 .feedback{
 	width: 650px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 10px;
-	text-indent: 25px;
-	border: 1px solid black;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	
+	padding: 5px 10px 5px 30px;
+	
+	box-shadow: 0 1px 0 #f5f5f5 inset;
+	-webkit-transition: all 0.5s linear;
+	-moz-transition: all 0.5s linear;
+	-o-transition: all 0.5s linear;
+	-ms-transition: all 0.5s linear;
+	transition: all 0.5s linear;
 }
 
+.feedback b{
+	color: #6190ca;
+}
+
+.comment {
+	width: 100px;
+	word-break:break-all; 
+	word-wrap:break-word;
+}
 
 .new_comment{
 	width: 650px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
 .icn_dropdown,.icn_comment{
 	width: 25px;
-	margin: 3px;
+
+	display: inline-block;
+	margin-left: 10px;
+	cursor: pointer;
+	padding: 0px 0px;
+	text-align: center;
+	font-weight: bold;
+	border: 1px solid #A8BC65;
+	color: #6d7649;
+	border-radius: 4px;
+	background: #e4efc0;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.4);
+	background: #cae082;
+	background: -moz-linear-gradient(top, #cae082 0%, #abbd73 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cae082), color-stop(100%,#abbd73));
+	background: -webkit-linear-gradient(top, #cae082 0%,#abbd73 100%);
+	background: -o-linear-gradient(top, #cae082 0%,#abbd73 100%);
+	background: -ms-linear-gradient(top, #cae082 0%,#abbd73 100%);
+	background: linear-gradient(top, #cae082 0%,#abbd73 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cae082', endColorstr='#abbd73',GradientType=0 );
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
+.icn_delete {
+}
 .rating {
-	width : 200px;
+	float: right;
 	overflow: hidden;
 	display: inline-block;
 	text-align: right;
@@ -162,7 +210,51 @@ header a{
 	text-decoration: none;
 }
 
-      
+.new_comment textarea {
+	height:200px;
+	width:630px;
+	border: 1px solid #ddd;
+	padding: 10px;
+	font-weight: bold;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+	color: #666;
+	background: #ffffff;
+	background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 7%, #f7f7f7 22%, #ffffff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(7%,#f7f7f7), color-stop(22%,#f7f7f7), color-stop(100%,#ffffff));
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	background: -o-linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	background: -ms-linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	background: linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+	box-shadow: 0px 1px 1px rgba(255,255,255,0.7), 1px 1px 2px rgba(0,0,0,0.1) inset;
+}
+
+input[type="submit"], button[type="button"] {
+	border: 1px solid #EF9309;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.4);
+	color: #724C04;
+	display: inline-block;
+	border-radius: 4px;
+	margin-top: 5px;
+	margin-left: 0px;
+	margin-bottom: 20px;
+	padding: 6px 15px;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-weight: bold;
+	background: #ffaf4b;
+	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a));
+	background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
+
+#gap {
+	padding: 35px 0px;
+}
 </style>
 <script>
 function registerEvents() {
@@ -273,12 +365,12 @@ function fncSubmit(num)
 
 <body>
 <div id="wrap_body">
-		<header>
+	<header>
 		${user.name}님 환영합니다.
 		<a href = "/main">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/logout">Logout</a>
-		</header>
+	</header>
 	<section class = "wrapper">
 		<h1>HCI Project</h1>
 		<h2>${member.userid}(${member.name})'s PAGE </h2>
@@ -293,20 +385,20 @@ function fncSubmit(num)
 					<span style="float:right; margin-right: 10px;">
 						<img class="icn_dropdown" id="${board.id}" src="/img/icn_dropdown.png"></span>
 						<span style="float:right;"><img	class="icn_comment" id="${board.id}" src="/img/icn_comment.png"></span>
-					
-					<c:if test="${not empty board.fileName}">
 
+				</div>
+				
+				<c:if test="${not empty board.fileName}">
 						<object id="file_${board.id}" data="/pdf/${board.fileName}"
 							type="application/pdf" width="100%" height="600px"
-							style="display: none"></object>
-					</c:if>
-					<br>
-				</div>
+							style="display: none; border:3px solid #ddd;"></object>
+				</c:if>
+				
 				
 				<div class="new_comment" id="new_comment_${board.id}" style="display:none">
 					<form name="new_comment_form" action="/board/list/comment/${board.id}/upload"  method="POST">
-						<textarea name="contents" style="width:600px" placeholder="리뷰 입력"></textarea>
-						<input type="submit" value="등록">
+						<textarea name="contents" placeholder="리뷰 입력"></textarea>
+						<input type="submit" value="SUBMIT">
 						<br>
 					</form>
 				</div>
@@ -315,7 +407,10 @@ function fncSubmit(num)
 				<c:forEach items="${comment}" var="comm">
 					<c:if test="${comm.board.id == board.id}">
 						<div class="feedback">
-							${comm.user_comment.name} : ${comm.contents} 
+							<span class="comment"><b>${comm.user_comment.name}</b> ${comm.contents} 
+							<a href="/board/list/comment/${comm.id}/delete"><img class="icn_delete" id="${board.id}" 
+								src="/img/icn_delete.png" width="10px"></a>
+								</span>
 							<span class="rating" id="${board.id}" title="${comm.rating}">
 								<input type="radio" class="rating-input" id="rating-input-10-${comm.id}" name="rating-input-${comm.id}">
 						        <label for="rating-input-10-${comm.id}" class="rating-star"></label>
@@ -337,16 +432,16 @@ function fncSubmit(num)
 						        <label for="rating-input-2-${comm.id}" class="rating-star"></label>
 						        <input type="radio" class="rating-input" id="rating-input-1-${comm.id}" name="rating-input-${comm.id}">
 						        <label for="rating-input-1-${comm.id}" class="rating-star"></label>
-						    </span>
-								<a href="/board/list/comment/${comm.id}/delete"><img class="icn_delete" id="${board.id}" 
-								src="/img/icn_delete.png" width="15px"></a></span>
+						    </span>	
+						    
 						</div>
 					</c:if>
 				</c:forEach>
-				<br>
+				<div id="gap"></div>
 			</c:forEach>
-
+			
 		</div>
+		
 	</section>
 </div>
 </body>
