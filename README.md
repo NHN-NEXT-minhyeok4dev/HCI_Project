@@ -22,14 +22,12 @@ HCI Project
 * 평점 부분 UI개선 및 디자인 수정
 * <del>평점 부분 디비연동</del>
 * <del>긴글의 코멘트 가능하도록 db수정</del>
-* <del>한글 입력 문제 해결</del>  >> 시험해보세요!
-* 코멘트 입력부 및 입력후 보이는 UI 개선
+* <del>한글 입력 문제 해결</del>
+* <del>코멘트 입력부 및 입력후 보이는 UI 개선</del>
 
 ### 전달사항(선진 --> 민혁)
 
 ### 전달사항(민혁 --> 선진)
-* (이미 처리) 한글 인코딩 문제 : Mysql DB 인코딩 세팅을 UTF8로 해주어야 함. 서버(/etc/mysql/my.cnf) 참조 : http://croute.tistory.com/606
-* 코멘트 UI를 어떻게 개선할까요?
 
 ### 서버관련
 *  접속 IP :  10.73.44.97
@@ -47,3 +45,5 @@ HCI Project
 * 댓글이나 평가, PDF올리기에 따른 권한 관리가 가능하다.
 
 ### [참고자료](https://github.com/onlycesc/HCI_Project/wiki/참고자료)
+*(이미 처리) 한글 인코딩 문제 : Mysql DB 인코딩 세팅을 UTF8로 해주어야 함. 서버(/etc/mysql/my.cnf) 참조 : http://croute.tistory.com/606
+
