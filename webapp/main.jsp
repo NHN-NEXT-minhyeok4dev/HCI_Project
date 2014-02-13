@@ -31,16 +31,85 @@ h1,h2 {
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
-} 
+}
+
+.wrapper {
+	width: 94%;
+	max-width: 700px;
+	min-width: 280px;
+	margin: 30px auto 30px auto;
+	background: #fff url(../img/try.jpg) no-repeat 99% 30px;
+	position: relative;
+	padding: 20px;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+}
+
+a{
+    border: 1px solid #EF9309;
+	text-shadow: 0px 1px 1px rgba();
+	display: inline-block;
+	margin: 4px 2px;
+	border-radius: 4px;
+	padding: 15px 15px;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
+	font-weight: bold;
+	font-size: 15px;
+	background: #ffaf4b;
+	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a));
+	background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	color: #555;
+	text-decoration: none;
+}
+
+header{
+	margin: 10px;
+	padding: 20px 10px 10px 10px;
+	position: relative;
+	display: block;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+header a{
+    border: 1px solid #EF9309;
+	text-shadow: 0px 1px 1px rgba();
+	color: #fff;
+	display: inline-block;
+	margin: 0 2px;
+	border-radius: 4px;
+	padding: 2px 15px;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
+	font-weight: bold;
+	font-size: 13px;
+	background: #ffaf4b;
+	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a));
+	background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
 </style>
 </head>
 <body>
-	<div id=wrap_body>
-		${user.name}님 환영합니다. 
-		<a href = "/logout">logout</a><br><br>
+<div id=wrap_body>
+	<header>
+		${user.name}님 환영합니다.
+		<a href = "/logout">logout</a>
+	</header>
+	<section class = "wrapper">
 		<c:forEach items="${member}" var="member">
-			<a href = "/board/list/${member.userid}">${member.name}</a><br>
+			<a href = "/board/list/${member.userid}">${member.userid}(${member.name})'s page</a>
 		</c:forEach>
-	</div>
+	</section>
+</div>
 </body>
 </html>

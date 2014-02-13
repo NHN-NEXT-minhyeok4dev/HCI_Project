@@ -27,7 +27,7 @@ public class LoginController {
     }
 	
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
-	public String signin(Model model, Member member) {
+	public String signin(Model model, Member member, String confirm) {
 		List<Member> copy = (List<Member>) memberrepository.findAll();
 		for(Member m : copy) {
 			String oUserId = m.getUserid();
@@ -35,6 +35,10 @@ public class LoginController {
 				model.addAttribute("error", "동일한 ID가 존재합니다.");
 				return "index";
 			}
+		}
+		if (!member.getPassword().equals(confirm)) {
+			model.addAttribute("error", "패스워드가 일치하지 않습니다.");
+			return "index";
 		}
 		memberrepository.save(member);
 		return "redirect:/";
@@ -55,6 +59,9 @@ public class LoginController {
 		if(member.getPassword().equals(password)) {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("name", member.getName());
+		} else {
+			model.addAttribute("error", "패스워드가 일치하지 않습니다.");
+			return "index";
 		}
 
 		return "redirect:/board/list/" + link;
