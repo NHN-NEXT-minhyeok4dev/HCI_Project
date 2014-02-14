@@ -99,10 +99,18 @@ header h1{
 }
 
 header p{
-	font-style: italic;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	color: #aaa;
 	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
 }
+
+header c{
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	color: #6e6e6e;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+}
+
 
 footer {
 	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
@@ -116,7 +124,26 @@ footer {
 <body>
 <div id="wrap_body">
 	<header>
-		<h1>HCI Board</h1>
+		<h1>HCI Project Community Board</h1>
+		<p align="justify"><c>Human–computer interaction (HCI)</c> involves the study, planning, design and uses of the interaction between people (users) and computers. 
+		It is often regarded as the intersection of computer science, behavioral sciences, design and several other fields of study. 
+		The term was popularized by Card, Moran, and Newell in their seminal 1983 book, The Psychology of Human-Computer Interaction, 
+		although the authors first used the term in 1980, and the first known use was in 1975. The term connotes that, 
+		unlike other tools with only limited uses (such as a hammer, useful for driving nails, but not much else), 
+		a computer has many affordances for use and this takes place in an open-ended dialog between the user and the computer.
+		Because human–computer interaction studies a human and a machine in conjunction, it draws from supporting knowledge on both the machine and the human side.
+		On the machine side, techniques in computer graphics, operating systems, programming languages, and development environments are relevant. 
+		On the human side, communication theory, graphic and industrial design disciplines, linguistics, 
+		social sciences, cognitive psychology, and human factors such as computer user satisfaction are relevant. 
+		Engineering and design methods are also relevant. Due to the multidisciplinary nature of HCI, people with different backgrounds contribute to its success.
+		HCI is also sometimes referred to as man–machine interaction (MMI) or computer–human interaction (CHI).
+		Attention to human-machine interaction is important because poorly designed human-machine interfaces can lead to many unexpected problems. 
+		A classic example of this is the Three Mile Island accident, a nuclear meltdown accident, 
+		where investigations concluded that the design of the human–machine interface was at least partially responsible for the disaster.
+		Similarly, accidents in aviation have resulted from manufacturers' decisions to use non-standard flight instrument and/or 
+		throttle quadrant layouts: even though the new designs were proposed to be superior in regards to basic human–machine interaction, 
+		pilots had already ingrained the "standard" layout and thus the conceptually good idea actually had undesirable results.
+		</p>
 		<section class = "wrapper">
 			<a href = "/login_page">Log-in</a>
 			<a href = "/signin_page">Sign-in</a>
