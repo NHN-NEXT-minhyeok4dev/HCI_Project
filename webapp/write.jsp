@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HCI_Project</title>
+<link rel="shortcut icon" href="/img/nhnnext_favicon.ico" />
+<title>HCI Project</title>
 <style>
 body {
 	background-color: #EAEAEA;
