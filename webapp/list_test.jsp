@@ -22,7 +22,7 @@ body {
 }
 
 #wrap_body {
-	width: 800px;
+	width: 1050px;
 	background-color: #F3F3F3;
 	margin-left: auto;
 	margin-right: auto;
@@ -60,7 +60,7 @@ h2 {
 }
 
 #wrap_contents {
-	width: 700px;
+	width: 950px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -84,7 +84,7 @@ h2 {
 }
 
 .feedback{
-	width: 650px;
+	width: 850px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 5px;
@@ -176,9 +176,9 @@ h2 {
 
 .wrapper {
 	width: 94%;
-	max-width: 700px;
+	max-width: 950px;
 	min-width: 280px;
-	margin: 30px auto 30px auto;
+	margin: 10px auto 30px auto;
 	background: #fff no-repeat 99% 30px;
 	position: relative;
 	padding: 20px;
