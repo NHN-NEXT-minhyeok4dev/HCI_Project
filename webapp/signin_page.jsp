@@ -97,6 +97,17 @@ input[type="submit"]:active, button[type="button"]:active {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
 	box-shadow: 0px 1px 1px rgba(255,255,255,0.7), 1px 1px 2px rgba(0,0,0,0.1) inset;
 }
+
+footer {
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-size: 15px;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	margin : 5px;
+	color: #aaa;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -117,5 +128,8 @@ input[type="submit"]:active, button[type="button"]:active {
 		</div>
 	</section>
 </div>
+<footer>
+		Copyright © 2014 Design by astomusic & onlysec (HCI Project in NHNNEXT)
+</footer>
 </body>
 </html>

@@ -261,6 +261,14 @@ input[type="submit"], button[type="button"] {
 #gap {
 	padding: 35px 0px;
 }
+
+footer {
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	margin : 5px;
+	color: #aaa;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+	text-align: center;
+}
 </style>
 <script>
 function registerEvents() {
@@ -292,6 +300,10 @@ function markoldrate() {
 		var eachcomment = oldrate[i].getElementsByClassName('rating-input');
 		if(old != 0) {
 			eachcomment[eachcomment.length-old].checked = true;
+		} else if (old == 0) {
+			for(j=0;j<10;j++) {
+				eachcomment[j].checked = false;
+			}
 		}
 	}
 }
@@ -450,5 +462,8 @@ function fncSubmit(num)
 		
 	</section>
 </div>
+<footer>
+		Copyright © 2014 Design by astomusic & onlysec (HCI Project in NHNNEXT)
+</footer>
 </body>
 </html>

@@ -42,6 +42,17 @@ h1,h2 {
 	margin-right: auto;
 }
 
+.wrapper {
+	width: 94%;
+	max-width: 700px;
+	min-width: 280px;
+	margin: 30px auto 30px auto;
+	background: #fff url(../img/try.jpg) no-repeat 99% 30px;
+	position: relative;
+	padding: 20px;
+	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+}
+
 a{
     border: 1px solid #EF9309;
 	text-shadow: 0px 1px 1px rgba();
@@ -91,20 +102,29 @@ header p{
 	color: #aaa;
 	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
 }
+
+footer {
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	margin : 5px;
+	color: #aaa;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+	text-align: center;
+}
 </style>
 </head>
 <body>
 <div id="wrap_body">
 	<header>
 		<h1>HCI Board</h1>
-		<a href = "/login_page">Log-in</a>
-		<a href = "/signin_page">Sign-in</a>
-		
+		<section class = "wrapper">
+			<a href = "/login_page">Log-in</a>
+			<a href = "/signin_page">Sign-in</a>
+		</section>
 		<p><c:if test="${not empty error}">${error}</c:if></p>
 	</header>
-	
-	
-		
 </div>
+<footer>
+		Copyright © 2014 Design by astomusic & onlysec (HCI Project in NHNNEXT)
+</footer>
 </body>
 </html>

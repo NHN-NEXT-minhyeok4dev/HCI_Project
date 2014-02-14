@@ -99,6 +99,18 @@ header a{
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	text-decoration: none;
 }
+
+footer {
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-size: 15px;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	margin : 5px;
+	color: #aaa;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+	text-align: center;
+}
+
 </style>
 </head>
 <body>
@@ -114,4 +126,7 @@ header a{
 	</section>
 </div>
 </body>
+<footer>
+		Copyright © 2014 Design by astomusic & onlysec (HCI Project in NHNNEXT)
+</footer>
 </html>
