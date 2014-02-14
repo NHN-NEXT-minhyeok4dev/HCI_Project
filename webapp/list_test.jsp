@@ -292,6 +292,7 @@ function registerEvents() {
 	}
 	
 	markoldrate();
+	newline();
 }
 
 function markoldrate() {
@@ -351,6 +352,16 @@ function toggleNewComment(e) {
 	// if not showing
 	else if (document.querySelector("#new_comment_" + e.target.id).style.display == "none") {
 		document.querySelector("#new_comment_" + e.target.id).style.display = "";
+	}
+}
+
+function newline() {
+	var comment = document.querySelectorAll('#comm_content');
+	for(i=0; i<comment.length ; i++) {
+		var temp = comment[i].innerHTML;
+		temp = temp.replace(/\r\n/gi, "<br>")
+		temp = temp.replace(/\n/gi, "<br>")
+		comment[i].innerHTML = temp
 	}
 }
 
@@ -426,7 +437,7 @@ function fncSubmit(num)
 				<c:forEach items="${comment}" var="comm">
 					<c:if test="${comm.board.id == board.id}">
 						<div class="feedback">
-							<span class="comment"><b>${comm.user_comment.name}</b> ${comm.contents} 
+							<span class="comment"><b>${comm.user_comment.name}</b> <a id=comm_content>${comm.contents}</a> 
 							<a href="/board/list/comment/${comm.id}/delete"><img class="icn_delete" id="${board.id}" 
 								src="/img/icn_delete.png" width="10px"></a>
 								</span>
