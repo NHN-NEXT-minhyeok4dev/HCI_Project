@@ -119,7 +119,7 @@ h2 {
 	margin-bottom: 10px;
 }
 
-.icn_dropdown,.icn_comment{
+.icn_dropdown,.icn_comment, .icn_board_delete{
 	width: 25px;
 
 	display: inline-block;
@@ -279,10 +279,14 @@ function registerEvents() {
 		icnArr[i].addEventListener('click', toggleFile, false);
 	}
 
-
 	icnArr = document.getElementsByClassName('icn_comment')
 	for (i = 0; i < icnArr.length; i++) {
 		icnArr[i].addEventListener('click', toggleNewComment, false);
+	}
+	
+	icnArr = document.getElementsByClassName('icn_board_delete')
+	for (i = 0; i < icnArr.length; i++) {
+		icnArr[i].addEventListener('click', deleteBoard, false);
 	}
 	
 	//add event for rating
@@ -333,6 +337,24 @@ function checkrate(e) {
 	
 }
 
+function deleteBoard(e){
+	if("${member.userid}" == "${user.userid}") {
+		var url = "/board/delete/" + e.target.id + "/who/${member.userid}";
+		
+		var formdata = new FormData();
+		var request = new XMLHttpRequest();
+		request.open("GET" , url, true);
+		request.send(formdata); 
+		request.onreadystatechange = function(){
+			if(request.readyState == 4 && request.status == 200){			
+				document.location.reload(true);
+			}
+		};
+	} else {
+		alert("권한이 없습니다.");
+	}
+}
+
 function toggleFile(e) {
 	// if showing
 	if (document.querySelector("#file_" + e.target.id).style.display == "") {
@@ -365,30 +387,6 @@ function newline() {
 	}
 }
 
-
-/* function fncEnCode(param)
-{
-var encode = '';
-
-for(i=0; i<param.length; i++)
-{
-var len  = ''+param.charCodeAt(i);
-var token = '' + len.length;
-encode  += token + param.charCodeAt(i);
-}
-
-return encode;
-}
-
-function fncSubmit(num)
-{
-	var fm = document.getElementById('new_comment_' + num).children[0];
-	var raw = fm.contents.value;
-	debugger;
-    raw = fncEnCode(raw);
-    console.log(raw);
-    fm.submit();
-} */
 	window.onload = registerEvents;
 </script>
 </head>
@@ -412,9 +410,11 @@ function fncSubmit(num)
 				<div class="article" id="article_${board.id}">
 					<span id="board_id">${board.id} >></span> ${board.title}
 					
-					<span style="float:right; margin-right: 10px;">
-						<img class="icn_dropdown" id="${board.id}" src="/img/icn_dropdown.png"></span>
-						<span style="float:right;"><img	class="icn_comment" id="${board.id}" src="/img/icn_comment.png"></span>
+	<%-- 				<span style="float:right; margin_right:10px"><a href="/board/delete/${board.id}/who/${member.userid}"><img class="icn_board_delete" id="${board.id}" src="/img/icn_board_delete.png"></a></span>
+	 --%>				<span style="float:right; margin_right:10px"><img class="icn_board_delete" id="${board.id}" src="/img/icn_board_delete.png"></span>
+					<span style="float:right;"><img class="icn_dropdown" id="${board.id}" src="/img/icn_dropdown.png"></span>
+					<span style="float:right;"><img	class="icn_comment" id="${board.id}" src="/img/icn_comment.png"></span>
+						
 
 				</div>
 				

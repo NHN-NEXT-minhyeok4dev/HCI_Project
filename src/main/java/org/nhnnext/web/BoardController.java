@@ -2,6 +2,7 @@ package org.nhnnext.web;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -64,6 +65,25 @@ public class BoardController {
 		
 		return "list_test";
 	}
+	
+	@RequestMapping(value="/board/delete/{boardid}/who/{userid}")
+	public String deleteBoard(@PathVariable Long boardid, @PathVariable String userid, Model model){
+		Iterator<Comment> commItr = commentRepository.findAll().iterator();
+		Board board = boardRepository.findOne(boardid);
+		
+		
+		while(commItr.hasNext()){
+			Comment comm = commItr.next();
+			if(board.getId().equals(comm.getBoard().getId())){
+				commentRepository.delete(comm);
+			}
+		}
+		
+		boardRepository.delete(boardid);		
+		
+		return "redirect:/board/list/" + userid;
+	}
+	
 	
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session) {
