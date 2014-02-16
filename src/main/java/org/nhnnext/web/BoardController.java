@@ -44,6 +44,10 @@ public class BoardController {
 	@RequestMapping(value="/board/list/{id}")
 	public String loadArticle(@PathVariable String id, Model model, HttpSession session){
 		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
 		Member member = memberrepository.findOne(id);
 		List<Board> boards = (List<Board>) boardRepository.findAll();
 		List<Board> result = new ArrayList<Board>();
