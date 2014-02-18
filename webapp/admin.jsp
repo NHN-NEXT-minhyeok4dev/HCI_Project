@@ -55,24 +55,13 @@ h1,h2 {
 }
 
 a{
-    border: 1px solid #EF9309;
 	text-shadow: 0px 1px 1px rgba();
 	display: inline-block;
-	margin: 4px 2px;
-	border-radius: 4px;
-	padding: 15px 15px;
-	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
+	margin: 5px 2px;
+	padding: 1px 10px;
+	font-family: "Nanum Gothic", Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
 	font-weight: bold;
 	font-size: 15px;
-	background: #ffaf4b;
-	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a));
-	background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
-	background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
-	background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
-	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	color: #555;
 	text-decoration: none;
 }
@@ -109,6 +98,61 @@ header a{
 	text-decoration: none;
 }
 
+.wrapper h3 {
+	margin : 0px 0px 10px 0px;
+	color: #444;
+	padding: 10px;
+}
+
+.buttons {
+	margin-left: -10px;
+}
+	
+input[type="submit"], button[type="button"] {
+	border: 1px solid #EF9309;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.4);
+	color: #724C04;
+	display: inline-block;
+	border-radius: 4px;
+	margin: 5px 2px 5px 2px;
+	padding: 5px 5px;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-weight: bold;
+	background: #ffaf4b;
+	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a));
+	background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
+
+input[type="submit"]:active, button[type="button"]:active {
+	box-shadow: 0px 1px 2px rgba(255,255,255,0.5);
+	background: #ffaf4b;
+}
+
+#request input[type=text],
+#request input[type=password] {
+	border: 1px solid #ddd;
+	padding: 10px;
+	font-weight: bold;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+	color: #666;
+	width: 33%;
+	background: #ffffff;
+	background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 7%, #f7f7f7 22%, #ffffff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(7%,#f7f7f7), color-stop(22%,#f7f7f7), color-stop(100%,#ffffff));
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	background: -o-linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	background: -ms-linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	background: linear-gradient(top, #ffffff 0%,#f7f7f7 7%,#f7f7f7 22%,#ffffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+	box-shadow: 0px 1px 1px rgba(255,255,255,0.7), 1px 1px 2px rgba(0,0,0,0.1) inset;
+}
+
 footer {
 	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	font-size: 15px;
@@ -132,8 +176,13 @@ footer {
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">
-		${user.name}
-		${user.userid}
+		<h3>Account Infomation</h3>
+			<a>USERID : ${user.userid}</a>
+			<button type="button" name="cancel" onclick="location.href='/admin'">MODIFY</button><br>
+			<a>USERNAME : ${user.name}</a>
+	 		<button type="button" name="cancel" onclick="location.href='/admin'">MODIFY</button><br>
+	 		<a>PASSWAORD : *****</a>
+	 		<button type="button" name="cancel" onclick="location.href='/admin'">MODIFY</button>
 	</section>
 </div>
 </body>
