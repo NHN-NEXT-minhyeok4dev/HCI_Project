@@ -14,7 +14,7 @@ body {
 	background-color: #EAEAEA;
 	font-weight: 400;
 	font-size: 15px;
-	font-family: "Nanum Gothic"
+	font-family: "Nanum Gothic";
 	color: #333;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
@@ -289,6 +289,11 @@ function registerEvents() {
 		icnArr[i].addEventListener('click', deleteBoard, false);
 	}
 	
+	icnArr = document.getElementsByClassName('icn_delete')
+	for (i = 0; i < icnArr.length; i++) {
+		icnArr[i].addEventListener('click', deleteComment, false);
+	}
+	
 	//add event for rating
 	rating = document.getElementsByClassName('rating-input')
 	for(i=0;i<rating.length;i++){
@@ -339,21 +344,47 @@ function checkrate(e) {
 
 function deleteBoard(e){
 	if("${member.userid}" == "${user.userid}") {
-		var url = "/board/delete/" + e.target.id + "/who/${member.userid}";
-		
-		var formdata = new FormData();
-		var request = new XMLHttpRequest();
-		request.open("GET" , url, true);
-		request.send(formdata); 
-		request.onreadystatechange = function(){
-			if(request.readyState == 4 && request.status == 200){			
-				document.location.reload(true);
+		if (confirm('삭제하시겠습니까?')) {
+			var url = "/board/delete/" + e.target.id + "/who/${member.userid}";
+			
+			var formdata = new FormData();
+			var request = new XMLHttpRequest();
+			request.open("GET" , url, true);
+			request.send(formdata); 
+			request.onreadystatechange = function(){
+				if(request.readyState == 4 && request.status == 200){			
+					document.location.reload(true);
+				}
 			}
-		};
+		} else {
+		}
 	} else {
 		alert("권한이 없습니다.");
 	}
 }
+
+function deleteComment(e){
+	userid = e.target.id
+	commentid = e.target.name
+	if(userid == "${user.userid}") {
+		if (confirm('삭제하시겠습니까?')) {
+			var url = "/board/list/comment/" + commentid + "/delete";
+			var formdata = new FormData();
+			var request = new XMLHttpRequest();
+			request.open("GET" , url, true);
+			request.send(formdata); 
+			request.onreadystatechange = function(){
+				if(request.readyState == 4 && request.status == 200){			
+					document.location.reload(true);
+				}
+			}
+		} else {
+		}
+	} else {
+		alert("권한이 없습니다.");
+	}
+}
+
 
 function toggleFile(e) {
 	// if showing
@@ -397,6 +428,7 @@ function newline() {
 		${user.name}님 환영합니다.
 		<a href = "/main">Main</a>
 		<a href = "/write">Write</a>
+		<a href = "/admin">Admin</a>
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">
@@ -438,9 +470,8 @@ function newline() {
 					<c:if test="${comm.board.id == board.id}">
 						<div class="feedback">
 							<span class="comment"><b>${comm.user_comment.name}</b> <a id=comm_content>${comm.contents}</a> 
-							<a href="/board/list/comment/${comm.id}/delete"><img class="icn_delete" id="${board.id}" 
-								src="/img/icn_delete.png" width="10px"></a>
-								</span>
+							<img class="icn_delete" id="${comm.user_comment.userid}" name="${comm.id}" src="/img/icn_delete.png" width="10px"></a>
+							</span>
 							<span class="rating" id="${board.id}" title="${comm.rating}">
 								<input type="radio" class="rating-input" id="rating-input-10-${comm.id}" name="rating-input-${comm.id}">
 						        <label for="rating-input-10-${comm.id}" class="rating-star"></label>

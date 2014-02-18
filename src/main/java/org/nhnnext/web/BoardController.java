@@ -30,8 +30,12 @@ public class BoardController {
 	private MemberRepository memberrepository;
 	
 	@RequestMapping(value="/board", method=RequestMethod.POST)
-	public String create(Board board, MultipartFile file, HttpSession session) {
+	public String create(Board board, MultipartFile file, HttpSession session, Model model) {
 		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
 		Member member = memberrepository.findOne(userid);
 		FileUploader.upload(file);
 		board.setUser_board(member);
@@ -71,11 +75,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/delete/{boardid}/who/{userid}")
-	public String deleteBoard(@PathVariable Long boardid, @PathVariable String userid, Model model){
+	public String deleteBoard(@PathVariable Long boardid, @PathVariable String userid, Model model, HttpSession session){
 		Iterator<Comment> commItr = commentRepository.findAll().iterator();
 		Board board = boardRepository.findOne(boardid);
+		String sesstionid = (String)session.getAttribute("userid");
+		String boarduser = board.getUser_board().getUserid();
 		
-		
+		if(!boarduser.equals(sesstionid)) {
+			model.addAttribute("error", "삭제권한이 없습니다.");
+			return "redirect:/board/list/" + boarduser;
+		}
 		while(commItr.hasNext()){
 			Comment comm = commItr.next();
 			if(board.getId().equals(comm.getBoard().getId())){
@@ -85,7 +94,7 @@ public class BoardController {
 		
 		boardRepository.delete(boardid);		
 		
-		return "redirect:/board/list/" + userid;
+		return "redirect:/board/list/" + boarduser;
 	}
 	
 	
@@ -104,6 +113,10 @@ public class BoardController {
 	@RequestMapping("/write")
 	public String write(Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
 		model.addAttribute("user", memberrepository.findOne(userid));
 		
 		return "write";

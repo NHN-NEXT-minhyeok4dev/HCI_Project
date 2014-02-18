@@ -73,4 +73,12 @@ public class LoginController {
 		session.removeAttribute("name");
 		return "index";
     }
+	
+	@RequestMapping("/admin")
+	public String admin(Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		model.addAttribute("user", memberrepository.findOne(userid));
+		
+		return "admin";
+	}
 }
