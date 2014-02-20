@@ -132,8 +132,8 @@ footer {
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">
-		<c:forEach items="${member}" var="member">
-			<a href = "/board/list/${member.userid}">${member.userid}(${member.name})'s page</a>
+		<c:forEach items="${team}" var="team">
+			<a href = "/board/list/${team.name}">${team.name} TEAM's page</a>
 		</c:forEach>
 	</section>
 </div>

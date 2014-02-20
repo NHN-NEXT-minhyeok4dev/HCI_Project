@@ -32,7 +32,7 @@ public class CommentController {
 		Member member = memberrepository.findOne(userid);
 		comment.setUser_comment(member);
 		
-		String link = comment.getBoard().getUser_board().getUserid();
+		String link = comment.getBoard().getUser_board().getUser_team().getName();
 		
 		commentRepository.save(comment);
 		return "redirect:/board/list/" + link;
@@ -43,7 +43,7 @@ public class CommentController {
 		Comment comment = new Comment();
 		comment = commentRepository.findOne(commentid);
 		
-		String link = comment.getBoard().getUser_board().getUserid();
+		String link = comment.getBoard().getUser_board().getUser_team().getName();
 		
 		comment.setRating(rate);
 		System.out.println(comment.getContents());
@@ -55,7 +55,7 @@ public class CommentController {
 	public String delete(@PathVariable Long commentID, Model model, HttpSession session) {		
 		String commentuser = commentRepository.findOne(commentID).getUser_comment().getUserid();
 		String userid = (String)session.getAttribute("userid");
-		String link = commentRepository.findOne(commentID).getBoard().getUser_board().getUserid();
+		String link = commentRepository.findOne(commentID).getBoard().getUser_board().getUser_team().getName();
 		
 		if(!commentuser.equals(userid)) {
 			model.addAttribute("error", "삭제권한이 없습니다.");

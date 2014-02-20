@@ -320,7 +320,7 @@ function markoldrate() {
 }
 
 function checkrate(e) {
-	if("${member.userid}" == "${user.userid}") {
+	if("${team.name}" == "${sessionScope.team}") {
 		var checked = e.target.id;
 		
 		var checkedArray = checked.split('-');
@@ -343,9 +343,9 @@ function checkrate(e) {
 }
 
 function deleteBoard(e){
-	if("${member.userid}" == "${user.userid}") {
+	if("${team.name}" == "${sessionScope.team}") {
 		if (confirm('삭제하시겠습니까?')) {
-			var url = "/board/delete/" + e.target.id + "/who/${member.userid}";
+			var url = "/board/delete/" + e.target.id + "/who/${team.name}";
 			
 			var formdata = new FormData();
 			var request = new XMLHttpRequest();
@@ -433,7 +433,7 @@ function newline() {
 	</header>
 	<section class = "wrapper">
 		<h1>HCI Project</h1>
-		<h2>${member.userid}(${member.name})'s PAGE </h2>
+		<h2>${team.name} TEAM's PAGE </h2>
 		
 		
 		<!-- 글의 한 세트 !-->
@@ -441,9 +441,7 @@ function newline() {
 			<c:forEach items="${board}" var="board">
 				<div class="article" id="article_${board.id}">
 					<span id="board_id">${board.id} >></span> ${board.title}
-					
-	<%-- 				<span style="float:right; margin_right:10px"><a href="/board/delete/${board.id}/who/${member.userid}"><img class="icn_board_delete" id="${board.id}" src="/img/icn_board_delete.png"></a></span>
-	 --%>				<span style="float:right; margin_right:10px"><img class="icn_board_delete" id="${board.id}" src="/img/icn_board_delete.png"></span>
+					<span style="float:right; margin_right:10px"><img class="icn_board_delete" id="${board.id}" src="/img/icn_board_delete.png"></span>
 					<span style="float:right;"><img class="icn_dropdown" id="${board.id}" src="/img/icn_dropdown.png"></span>
 					<span style="float:right;"><img	class="icn_comment" id="${board.id}" src="/img/icn_comment.png"></span>
 						

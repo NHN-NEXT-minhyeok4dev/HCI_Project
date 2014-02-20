@@ -45,7 +45,10 @@ public class BoardController {
 		board.setFileName(file.getOriginalFilename());
 		
 		boardRepository.save(board);
-		return "redirect:/board/list/" + userid;
+		
+		String link = member.getUser_team().getName();
+		
+		return "redirect:/board/list/" + link;
 	}
 	
 	@RequestMapping(value="/board/list/{id}")
@@ -55,38 +58,60 @@ public class BoardController {
 			model.addAttribute("error", "로그인해주세요");
 			return "index";
 		}
-		Member member = memberrepository.findOne(id);
+		
+		List<Member> resultMember = new ArrayList<Member>();
+		List<Board> resultBoard = new ArrayList<Board>();
+		
+		Team team =  teamRepository.findOne(id);
+		String teamName = team.getName();
+		List<Member> members = (List<Member>) memberrepository.findAll();
 		List<Board> boards = (List<Board>) boardRepository.findAll();
-		List<Board> result = new ArrayList<Board>();
-		for(Board board : boards) {
-			if(member.getUserid().equals(board.getUser_board().getUserid())) {
-				result.add(board);
+		
+		for(Member m : members) {
+			if(m.getUser_team().getName().equals(teamName)) {
+				resultMember.add(m);
 			}
 		}
 		
-		Collections.reverse(result);
+		for(Member m : resultMember) {
+			for(Board b : boards) {
+				if(b.getUser_board().getUserid().equals(m.getUserid())) {
+					resultBoard.add(b);
+				}
+			}
+		}
 		
-		List<Comment> r_comment = (List<Comment>) commentRepository.findAll();
-		Collections.reverse(r_comment);
+//		Team team =  teamRepository.findOne(id);
+//		List<Member> members = team.getMembers();
+//		for(Member m : members) {
+//			List<Board> boards = m.getboards();
+//			for(Board b : boards) {
+//				result.add(b);
+//			}
+//		}
+//		
+		Collections.reverse(resultBoard);
+		
+		List<Comment> comment = (List<Comment>) commentRepository.findAll();
+		Collections.reverse(comment);
 		
 		model.addAttribute("user", memberrepository.findOne(userid));
-		model.addAttribute("board", result);
-		model.addAttribute("member", memberrepository.findOne(id));
-		model.addAttribute("comment", r_comment);
+		model.addAttribute("board", resultBoard);
+		model.addAttribute("team", teamRepository.findOne(id));
+		model.addAttribute("comment", comment);
 		
 		return "list";
 	}
 	
-	@RequestMapping(value="/board/delete/{boardid}/who/{userid}")
-	public String deleteBoard(@PathVariable Long boardid, @PathVariable String userid, Model model, HttpSession session){
+	@RequestMapping(value="/board/delete/{boardid}/who/{teamid}")
+	public String deleteBoard(@PathVariable Long boardid, @PathVariable String teamid, Model model, HttpSession session){
 		Iterator<Comment> commItr = commentRepository.findAll().iterator();
 		Board board = boardRepository.findOne(boardid);
-		String sesstionid = (String)session.getAttribute("userid");
-		String boarduser = board.getUser_board().getUserid();
+		String link = board.getUser_board().getUser_team().getName();
 		
-		if(!boarduser.equals(sesstionid)) {
+		if(!link.equals(teamid)) {
 			model.addAttribute("error", "삭제권한이 없습니다.");
-			return "redirect:/board/list/" + boarduser;
+			return "redirect:/board/list/" + link;
 		}
 		while(commItr.hasNext()){
 			Comment comm = commItr.next();
@@ -97,7 +122,7 @@ public class BoardController {
 		
 		boardRepository.delete(boardid);		
 		
-		return "redirect:/board/list/" + boarduser;
+		return "redirect:/board/list/" + link;
 	}
 	
 	
@@ -110,17 +135,20 @@ public class BoardController {
 		}
 		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("member", memberrepository.findAll());
+		model.addAttribute("team", teamRepository.findAll());
 		return "main";
 	}
 	
 	@RequestMapping("/write")
 	public String write(Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
+		String team = (String)session.getAttribute("team");
 		if(userid == null) {
 			model.addAttribute("error", "로그인해주세요");
 			return "index";
 		}
 		model.addAttribute("user", memberrepository.findOne(userid));
+		model.addAttribute("team", teamRepository.findOne(team));
 		
 		return "write";
 	}

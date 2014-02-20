@@ -141,7 +141,7 @@ footer {
 				<div class=buttons>
 					<input type="file" name="file" size ="20" accept="application/pdf" value="파일"><br>
 					<input type="submit" value="SUBMIT">
-					<button type="button" name="cancel" onclick="location.href='/board/list/${user.userid}'">CANCEL</button>
+					<button type="button" name="cancel" onclick="location.href='/board/list/${team.name}'">CANCEL</button>
 				</div>
 			</form>
 		</div>

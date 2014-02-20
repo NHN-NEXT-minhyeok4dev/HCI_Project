@@ -57,19 +57,19 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, String userid, String password, HttpSession session) {
-		Member member = new Member();
-		member = memberrepository.findOne(userid);
+		Member member = memberrepository.findOne(userid);
 
 		if(member == null) {
 			model.addAttribute("error", "존재하지 않는 ID입니다.");
 			return "index";
 		}
 		
-		String link = member.getUserid();
+		String link = member.getUser_team().getName();
 		
 		if(member.getPassword().equals(password)) {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("name", member.getName());
+			session.setAttribute("team", member.getUser_team().getName());
 		} else {
 			model.addAttribute("error", "패스워드가 일치하지 않습니다.");
 			return "index";
@@ -82,10 +82,11 @@ public class LoginController {
     public String logout(HttpSession session) {
 		session.removeAttribute("userid");
 		session.removeAttribute("name");
+		session.removeAttribute("team");
 		return "index";
     }
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/info")
 	public String admin(Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid == null) {

@@ -172,7 +172,7 @@ footer {
 		${user.name}님 환영합니다.
 		<a href = "/main">Main</a>
 		<a href = "/write">Write</a>
-		<a href = "/admin">Admin</a>
+		<a href = "/info">Info</a>
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">

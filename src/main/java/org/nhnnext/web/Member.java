@@ -18,8 +18,6 @@ public class Member {
 	private String password;
 	@Column(length=100, nullable = false)
 	private String name;
-	@Column(nullable = false, columnDefinition = "int default 0")
-	private int status;
 	
 	@OneToMany(mappedBy = "user_comment", fetch = FetchType.LAZY)
     private List<Comment> comments;
@@ -56,20 +54,10 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
 
 	public Team getUser_team() {
 		return user_team;
 	}
-
 
 	public void setUser_team(Team user_team) {
 		this.user_team = user_team;
