@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -26,6 +27,9 @@ public class Member {
 	@OneToMany(mappedBy = "user_board", fetch = FetchType.LAZY)
     private List<Board> boards;
 	
+	@ManyToOne
+	private Team user_team;
+
 	public List<Board> getboards() {
 		return boards;
 	}
@@ -60,4 +64,20 @@ public class Member {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+
+	public Team getUser_team() {
+		return user_team;
+	}
+
+
+	public void setUser_team(Team user_team) {
+		this.user_team = user_team;
+	}
+
+	public boolean matchUserId(Member other) {
+		return this.userid.equals(other.userid);
+	}
+	
+	
 }

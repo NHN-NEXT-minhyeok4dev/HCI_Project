@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.nhnnext.repository.MemberRepository;
+import org.nhnnext.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	@Autowired
 	private MemberRepository memberrepository;
+	@Autowired
+	private TeamRepository teamRepository;
+	
 	
 	@RequestMapping("/signin_page")
     public String signin_page() {
@@ -28,18 +32,25 @@ public class LoginController {
 	
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String signin(Model model, Member member, String confirm) {
-		List<Member> copy = (List<Member>) memberrepository.findAll();
-		for(Member m : copy) {
-			String oUserId = m.getUserid();
-			if (member.getUserid().equals(oUserId)) {
+		
+		// 교수님이 OOP 적인 아이디어로 이렇게 하라고 해주심..
+		for(Member m: memberrepository.findAll()) {
+			if (member.matchUserId(m)) {
 				model.addAttribute("error", "동일한 ID가 존재합니다.");
-				return "index";
+				return "index";	
 			}
 		}
+		
 		if (!member.getPassword().equals(confirm)) {
 			model.addAttribute("error", "패스워드가 일치하지 않습니다.");
 			return "index";
 		}
+		
+		// if team name is not exists
+		if(!teamRepository.exists(member.getUser_team().getName())){
+			teamRepository.save(new Team(member.getUser_team().getName()));
+		}
+		
 		memberrepository.save(member);
 		return "redirect:/";
 	}

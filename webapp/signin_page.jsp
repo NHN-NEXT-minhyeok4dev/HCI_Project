@@ -121,6 +121,7 @@ footer {
 		 	<input type="text" id="userid" name="userid" size="45" placeholder="user id"><br>
 		 	<input type="password" id="password" name="password" size="45" placeholder="password"><br>
 		 	<input type="password" id="confirm" name="confirm" size="45" placeholder="password for confirmation"><br>
+		 	<input type="text" id="user_team" name="user_team" size="45" placeholder="team name"><br>
 		 	<div class=buttons>
 		 		<input type="submit" value="SUBMIT">
 		 		<button type="button" name="cancel" onclick="location.href='/'">CANCEL</button>
@@ -130,7 +131,7 @@ footer {
 	</section>
 </div>
 <footer>
-		Copyright © 2014 Design by astomusic & onlysec (HCI Project in NHNNEXT)
+		Copyright © 2014 Design by astomusic & onlycesc (HCI Project in NHNNEXT)
 </footer>
 </body>
 </html>

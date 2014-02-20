@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.nhnnext.repository.BoardRepository;
 import org.nhnnext.repository.CommentRepository;
 import org.nhnnext.repository.MemberRepository;
+import org.nhnnext.repository.TeamRepository;
 import org.nhnnext.support.FileUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class BoardController {
 	private CommentRepository commentRepository;
 	@Autowired
 	private MemberRepository memberrepository;
+	@Autowired
+	private TeamRepository teamRepository;
 	
 	@RequestMapping(value="/board", method=RequestMethod.POST)
 	public String create(Board board, MultipartFile file, HttpSession session, Model model) {

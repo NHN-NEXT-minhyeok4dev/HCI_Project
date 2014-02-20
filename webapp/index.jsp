@@ -152,7 +152,7 @@ footer {
 	</header>
 </div>
 <footer>
-		Copyright © 2014 Design by astomusic & onlysec (HCI Project in NHNNEXT)
+		Copyright © 2014 Design by astomusic & onlycesc (HCI Project in NHNNEXT)
 </footer>
 </body>
 </html>
