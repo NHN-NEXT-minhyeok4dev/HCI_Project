@@ -141,7 +141,32 @@ public class LoginController {
 		member.setName(omember.getName());
 		member.setPassword(newpassword);
 		member.setUser_team(omember.getUser_team());
+
+		memberrepository.save(member);
 		
+		return "redirect:/info";
+	}
+	
+	@RequestMapping("/info/newteam")
+	public String newteam(Model model, String newteam, Member member, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
+		
+		if(!teamRepository.exists(newteam)) {
+			teamRepository.save(new Team(newteam));
+		}
+		
+		Member omember = memberrepository.findOne(userid);
+		Team user_team = teamRepository.findOne(newteam);
+		
+		member.setUserid(userid);
+		member.setName(omember.getName());
+		member.setPassword(omember.getPassword());
+		member.setUser_team(user_team);
+
 		memberrepository.save(member);
 		
 		return "redirect:/info";

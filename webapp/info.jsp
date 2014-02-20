@@ -179,9 +179,15 @@ function registerEvents() {
 	for (i = 0; i < icnArr.length; i++) {
 		icnArr[i].addEventListener('click', toggleNewName, false);
 	}
+	
 	icnArr = document.getElementsByClassName('password_modify')
 	for (i = 0; i < icnArr.length; i++) {
 		icnArr[i].addEventListener('click', toggleNewPassword, false);
+	}
+	
+	icnArr = document.getElementsByClassName('team_modify')
+	for (i = 0; i < icnArr.length; i++) {
+		icnArr[i].addEventListener('click', toggleNewTeam, false);
 	}
 }
 
@@ -220,6 +226,23 @@ function toggleNewPassword(e) {
 	}
 }
 
+function toggleNewTeam(e) {
+	// if showing
+	if (document.querySelector(".new_team").style.display == "") {
+		document.querySelector(".new_team").style.display = "none";
+	}
+	// if not showing
+	else if (document.querySelector(".new_team").style.display == "none") {
+		var pw = prompt("비밀번호 재확인","");
+		if(pw == ${user.password}) {
+			document.querySelector(".new_team").style.display = "";
+		} else {
+			alert("잘못된 비밀번호 입니다.");
+		}
+		
+	}
+}
+
 window.onload = registerEvents;
 </script>
 </head>
@@ -246,8 +269,15 @@ window.onload = registerEvents;
 					</form>
 				</div>
 				
-			<a>TEAM NAME : ${user.user_team.name}</a>
-	 		<button type="button" name="cancel">MODIFY</button><br>
+			<a>TEAM : ${user.user_team.name}</a>
+	 		<button type="button" class="team_modify">MODIFY</button><br>
+	 			<div class="new_team" style="display:none">
+					<form name="new_team" action="/info/newteam"  method="POST">
+						<input type="text" name="newteam" placeholder="새로운 팀">
+						<input type="submit" value="SUBMIT">
+						<br>
+					</form>
+				</div>
 	 		
 	 		<a>TEAM MEMBERS :
 	 		<c:forEach items="${team}" var="member">
