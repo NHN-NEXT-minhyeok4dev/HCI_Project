@@ -178,11 +178,13 @@ footer {
 	<section class = "wrapper">
 		<h3>Account Infomation</h3>
 			<a>USERID : ${user.userid}</a>
-			<button type="button" name="cancel" onclick="location.href='/admin'">MODIFY</button><br>
+			<button type="button" name="cancel" onclick="location.href='/modify/1'">MODIFY</button><br>
+			<a>TEAM : ${user.user_team.name}</a>
+	 		<button type="button" name="cancel" onclick="location.href='/modify/2'">MODIFY</button><br>
 			<a>USERNAME : ${user.name}</a>
-	 		<button type="button" name="cancel" onclick="location.href='/admin'">MODIFY</button><br>
+	 		<button type="button" name="cancel" onclick="location.href='/modify/3'">MODIFY</button><br>
 	 		<a>PASSWAORD : *****</a>
-	 		<button type="button" name="cancel" onclick="location.href='/admin'">MODIFY</button>
+	 		<button type="button" name="cancel" onclick="location.href='/modify/4'">MODIFY</button>
 	</section>
 </div>
 </body>

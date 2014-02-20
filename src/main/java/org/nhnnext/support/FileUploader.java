@@ -6,8 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploader {
 	//Local Path
-//	private static final String ATTACHMENT_ROOT_DIR = "/Users/astomusic/Documents/workspace/HCI_Project/webapp/pdf";
-	private static final String ATTACHMENT_ROOT_DIR = "/Users/kimminhyeok/git/HCI_Project/webapp/pdf";
+	private static final String ATTACHMENT_ROOT_DIR = "/Users/asto/Documents/workspace/HCI_Project/webapp/pdf";
+	//private static final String ATTACHMENT_ROOT_DIR = "/Users/kimminhyeok/git/HCI_Project/webapp/pdf";
 	//Server Path
 	//private static final String ATTACHMENT_ROOT_DIR = "/var/lib/tomcat7/webapps/ROOT/pdf";
 

@@ -74,7 +74,7 @@ public class BoardController {
 		model.addAttribute("member", memberrepository.findOne(id));
 		model.addAttribute("comment", r_comment);
 		
-		return "list_test";
+		return "list";
 	}
 	
 	@RequestMapping(value="/board/delete/{boardid}/who/{userid}")

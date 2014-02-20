@@ -88,8 +88,13 @@ public class LoginController {
 	@RequestMapping("/admin")
 	public String admin(Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
+		
 		model.addAttribute("user", memberrepository.findOne(userid));
 		
-		return "admin";
+		return "info";
 	}
 }
