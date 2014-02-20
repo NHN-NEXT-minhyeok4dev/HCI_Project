@@ -87,15 +87,63 @@ public class LoginController {
     }
 	
 	@RequestMapping("/info")
-	public String admin(Model model, HttpSession session) {
+	public String info(Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid == null) {
 			model.addAttribute("error", "로그인해주세요");
 			return "index";
 		}
 		
+		List<Member> members = (List<Member>) memberrepository.findAll();
+		
 		model.addAttribute("user", memberrepository.findOne(userid));
+		model.addAttribute("team", members);
 		
 		return "info";
+	}
+	
+	@RequestMapping("/info/newname")
+	public String newname(Model model, String newname, Member member, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
+		
+		Member omember = memberrepository.findOne(userid);
+		
+		member.setUserid(userid);
+		member.setName(newname);
+		member.setPassword(omember.getPassword());
+		member.setUser_team(omember.getUser_team());
+		
+		memberrepository.save(member);
+		
+		return "redirect:/info";
+	}
+	
+	@RequestMapping("/info/newpassword")
+	public String newpassword(Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
+		
+		if(!newpassword.equals(newpassword_confirm)) {
+			model.addAttribute("error", "비밀번호가 다릅니다.");
+			return "redirect:/info";
+		}
+		
+		Member omember = memberrepository.findOne(userid);
+		
+		member.setUserid(userid);
+		member.setName(omember.getName());
+		member.setPassword(newpassword);
+		member.setUser_team(omember.getUser_team());
+		
+		memberrepository.save(member);
+		
+		return "redirect:/info";
 	}
 }

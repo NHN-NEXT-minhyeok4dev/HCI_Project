@@ -57,7 +57,7 @@ h1,h2 {
 a{
 	text-shadow: 0px 1px 1px rgba();
 	display: inline-block;
-	margin: 5px 2px;
+	margin: 10px 2px;
 	padding: 1px 10px;
 	font-family: "Nanum Gothic", Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;;
 	font-weight: bold;
@@ -114,7 +114,7 @@ input[type="submit"], button[type="button"] {
 	color: #724C04;
 	display: inline-block;
 	border-radius: 4px;
-	margin: 5px 2px 5px 2px;
+	margin: 2px 2px 2px 2px;
 	padding: 5px 5px;
 	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	font-weight: bold;
@@ -134,11 +134,11 @@ input[type="submit"]:active, button[type="button"]:active {
 	background: #ffaf4b;
 }
 
-#request input[type=text],
-#request input[type=password] {
+input[type=text], input[type=password] {
 	border: 1px solid #ddd;
 	padding: 10px;
 	font-weight: bold;
+	margin: 5px 10px 15px 20px;
 	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
 	color: #666;
 	width: 33%;
@@ -153,6 +153,7 @@ input[type="submit"]:active, button[type="button"]:active {
 	box-shadow: 0px 1px 1px rgba(255,255,255,0.7), 1px 1px 2px rgba(0,0,0,0.1) inset;
 }
 
+
 footer {
 	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	font-size: 15px;
@@ -165,6 +166,62 @@ footer {
 }
 
 </style>
+<script>
+function registerEvents() {
+	if (location.search != "") {
+		var error = decodeURIComponent(location.search);
+		error = error.replace("?error=","");
+		error = error.replace("+"," ");
+		alert(error);
+	}
+	
+	icnArr = document.getElementsByClassName('name_modify')
+	for (i = 0; i < icnArr.length; i++) {
+		icnArr[i].addEventListener('click', toggleNewName, false);
+	}
+	icnArr = document.getElementsByClassName('password_modify')
+	for (i = 0; i < icnArr.length; i++) {
+		icnArr[i].addEventListener('click', toggleNewPassword, false);
+	}
+}
+
+
+function toggleNewName(e) {
+	// if showing
+	if (document.querySelector(".new_name").style.display == "") {
+		document.querySelector(".new_name").style.display = "none";
+	}
+	// if not showing
+	else if (document.querySelector(".new_name").style.display == "none") {
+		var pw = prompt("비밀번호 재확인","");
+		if(pw == ${user.password}) {
+			document.querySelector(".new_name").style.display = "";
+		} else {
+			alert("잘못된 비밀번호 입니다.");
+		}
+		
+	}
+}
+
+function toggleNewPassword(e) {
+	// if showing
+	if (document.querySelector(".new_password").style.display == "") {
+		document.querySelector(".new_password").style.display = "none";
+	}
+	// if not showing
+	else if (document.querySelector(".new_password").style.display == "none") {
+		var pw = prompt("비밀번호 재확인","");
+		if(pw == ${user.password}) {
+			document.querySelector(".new_password").style.display = "";
+		} else {
+			alert("잘못된 비밀번호 입니다.");
+		}
+		
+	}
+}
+
+window.onload = registerEvents;
+</script>
 </head>
 <body>
 <div id=wrap_body>
@@ -177,14 +234,39 @@ footer {
 	</header>
 	<section class = "wrapper">
 		<h3>Account Infomation</h3>
-			<a>USERID : ${user.userid}</a>
-			<button type="button" name="cancel" onclick="location.href='/modify/1'">MODIFY</button><br>
-			<a>TEAM : ${user.user_team.name}</a>
-	 		<button type="button" name="cancel" onclick="location.href='/modify/2'">MODIFY</button><br>
+			<a>USERID : ${user.userid}</a><br>
+			
 			<a>USERNAME : ${user.name}</a>
-	 		<button type="button" name="cancel" onclick="location.href='/modify/3'">MODIFY</button><br>
+	 		<button type="button" class="name_modify">MODIFY</button><br>
+		 		<div class="new_name" style="display:none">
+					<form name="new_name" action="/info/newname"  method="POST">
+						<input type="text" name="newname" placeholder="새로운 이름">
+						<input type="submit" value="SUBMIT">
+						<br>
+					</form>
+				</div>
+				
+			<a>TEAM NAME : ${user.user_team.name}</a>
+	 		<button type="button" name="cancel">MODIFY</button><br>
+	 		
+	 		<a>TEAM MEMBERS :
+	 		<c:forEach items="${team}" var="member">
+	 			<c:if test="${member.user_team.name == user.user_team.name}">
+	 				 ${member.name} 
+	 			</c:if>
+	 		</c:forEach>
+	 		</a><br>
+	 		
 	 		<a>PASSWAORD : *****</a>
-	 		<button type="button" name="cancel" onclick="location.href='/modify/4'">MODIFY</button>
+	 		<button type="button" class="password_modify">MODIFY</button>
+	 			<div class="new_password" style="display:none">
+					<form name="new_password" action="/info/newpassword"  method="POST">
+						<input type="password" name="newpassword" placeholder="새로운 비밀번호"><br>
+						<input type="password" name="newpassword_confirm" placeholder="새로운 비밀번호 확인">
+						<input type="submit" value="SUBMIT">
+						<br>
+					</form>
+				</div>
 	</section>
 </div>
 </body>
