@@ -64,16 +64,20 @@ public class LoginController {
 			return "index";
 		}
 		
-		String link = member.getUser_team().getName();
+		//String link = member.getUser_team().getName();
+		String link;
 		
 		if(member.getPassword().equals(password)) {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("name", member.getName());
 			session.setAttribute("team", member.getUser_team().getName());
+			link = (String)session.getAttribute("team");
 		} else {
 			model.addAttribute("error", "패스워드가 일치하지 않습니다.");
 			return "index";
 		}
+		
+		
 
 		return "redirect:/board/list/" + link;
 	}
