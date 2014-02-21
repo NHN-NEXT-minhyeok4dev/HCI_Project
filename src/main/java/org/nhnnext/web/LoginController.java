@@ -66,7 +66,7 @@ public class LoginController {
 		
 		//String link = member.getUser_team().getName();
 		String link;
-		
+
 		if(member.getPassword().equals(password)) {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("name", member.getName());
@@ -77,7 +77,7 @@ public class LoginController {
 			return "index";
 		}
 		
-		
+		link = "아";
 
 		return "redirect:/board/list/" + link;
 	}
