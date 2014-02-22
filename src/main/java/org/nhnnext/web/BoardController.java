@@ -97,7 +97,7 @@ public class BoardController {
 		
 		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("board", resultBoard);
-		model.addAttribute("team", teamRepository.findOne(id));
+		model.addAttribute("team", team);
 		model.addAttribute("comment", comment);
 		
 		return "list";
