@@ -1,5 +1,7 @@
 package org.nhnnext.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -76,6 +78,12 @@ public class LoginController {
 			return "index";
 		}
 		
+		try {
+			link =  URLEncoder.encode(link, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return "redirect:/board/list/" + link;
 	}
