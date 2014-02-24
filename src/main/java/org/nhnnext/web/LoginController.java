@@ -11,6 +11,7 @@ import org.nhnnext.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -129,11 +130,66 @@ public class LoginController {
 		
 		memberrepository.save(member);
 		
+		if(member.getUserid() == "admin")
+			return "redirect:/admin";
 		return "redirect:/info";
 	}
 	
+	@RequestMapping("/admin/newname/{target}")
+	public String newnameByAdmin(@PathVariable String target, Model model, String newname, Member member, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
+		if(userid.equals("admin")){
+			
+			Member omember = memberrepository.findOne(target);
+			
+			member.setUserid(omember.getUserid());
+			member.setName(newname);
+			member.setPassword(omember.getPassword());
+			member.setUser_team(omember.getUser_team());
+			
+			memberrepository.save(member);
+			
+			return "redirect:/admin";
+		}
+		else {
+			model.addAttribute("error", "권한이 없습니다");
+			return "index";
+		}
+		
+	}
+	
 	@RequestMapping("/info/newpassword")
-	public String newpassword(Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
+	public String newpassword(@PathVariable String target, Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
+		
+		if(!newpassword.equals(newpassword_confirm)) {
+			model.addAttribute("error", "비밀번호가 다릅니다.");
+			return "redirect:/admin";
+		}
+		
+		Member omember = memberrepository.findOne(target);
+		
+		member.setUserid(omember.getUserid());
+		member.setName(omember.getName());
+		member.setPassword(newpassword);
+		member.setUser_team(omember.getUser_team());
+
+		memberrepository.save(member);
+		
+		
+			return "redirect:/info";
+	}
+	
+	@RequestMapping("/admin/newpassword/{target}")
+	public String newpasswordByAdmin(Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid == null) {
 			model.addAttribute("error", "로그인해주세요");
@@ -144,17 +200,22 @@ public class LoginController {
 			model.addAttribute("error", "비밀번호가 다릅니다.");
 			return "redirect:/info";
 		}
+		if(userid.equals("admin")){
+			Member omember = memberrepository.findOne(userid);
+			
+			member.setUserid(userid);
+			member.setName(omember.getName());
+			member.setPassword(newpassword);
+			member.setUser_team(omember.getUser_team());
+			
+			memberrepository.save(member);
 		
-		Member omember = memberrepository.findOne(userid);
-		
-		member.setUserid(userid);
-		member.setName(omember.getName());
-		member.setPassword(newpassword);
-		member.setUser_team(omember.getUser_team());
-
-		memberrepository.save(member);
-		
-		return "redirect:/info";
+			return "redirect:/admin";
+		}
+		else {
+			model.addAttribute("error", "권한이 없습니다");
+			return "index";
+		}
 	}
 	
 	@RequestMapping("/info/newteam")
@@ -179,6 +240,49 @@ public class LoginController {
 
 		memberrepository.save(member);
 		
+		if(member.getUserid() == "admin")
+			return "redirect:/admin";
+		
 		return "redirect:/info";
 	}
+	
+	@RequestMapping("/admin/newteam/{target}")
+	public String newteamByAdmin(@PathVariable String target, Model model, String newteam, Member member, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		if(userid == null) {
+			model.addAttribute("error", "로그인해주세요");
+			return "index";
+		}
+		
+		if(!teamRepository.exists(newteam)) {
+			teamRepository.save(new Team(newteam));
+		}
+		if(userid.equals("admin")){
+			Member omember = memberrepository.findOne(target);
+			Team user_team = teamRepository.findOne(newteam);
+			
+			member.setUserid(omember.getUserid());
+			member.setName(omember.getName());
+			member.setPassword(omember.getPassword());
+			member.setUser_team(user_team);
+			
+			memberrepository.save(member);
+		
+		
+			return "redirect:/admin";
+		}
+		else{
+			model.addAttribute("error", "권한이 없습니다");
+			return "index";
+		}
+	}
+	
+	
+	@RequestMapping("/admin")
+	public String adminPage(Model model){
+		model.addAttribute("user", memberrepository.findAll());
+		model.addAttribute("team", memberrepository.findAll());
+		return "admin";
+	}
+	
 }

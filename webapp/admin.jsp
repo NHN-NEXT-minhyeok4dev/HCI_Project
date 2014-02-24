@@ -194,16 +194,13 @@ function registerEvents() {
 
 function toggleNewName(e) {
 	// if showing
-	if (document.querySelector(".new_name").style.display == "") {
-		document.querySelector(".new_name").style.display = "none";
+	if (document.getElementById(e.target.value + "_name").style.display == "") {
+		document.getElementById(e.target.value + "_name").style.display = "none";
 	}
 	// if not showing
-	else if (document.querySelector(".new_name").style.display == "none") {
-		var pw = prompt("비밀번호 재확인","");
-		if(pw == ${user.password}) {
-			document.querySelector(".new_name").style.display = "";
-		} else {
-			alert("잘못된 비밀번호 입니다.");
+	else if (document.getElementById(e.target.value + "_name").style.display == "none") {
+		if (confirm('변경하시겠습니까?')) {
+			document.getElementById(e.target.value + "_name").style.display = "";
 		}
 		
 	}
@@ -211,16 +208,13 @@ function toggleNewName(e) {
 
 function toggleNewPassword(e) {
 	// if showing
-	if (document.querySelector(".new_password").style.display == "") {
-		document.querySelector(".new_password").style.display = "none";
+	if (document.getElementById(e.target.value + "_password").style.display == "") {
+		document.getElementById(e.target.value + "_password").style.display = "none";
 	}
 	// if not showing
-	else if (document.querySelector(".new_password").style.display == "none") {
-		var pw = prompt("비밀번호 재확인","");
-		if(pw == ${user.password}) {
-			document.querySelector(".new_password").style.display = "";
-		} else {
-			alert("잘못된 비밀번호 입니다.");
+	else if (document.getElementById(e.target.value + "_password").style.display == "none") {
+		if (confirm('변경하시겠습니까?')) {
+			document.getElementById(e.target.value + "_password").style.display = "";
 		}
 		
 	}
@@ -228,18 +222,14 @@ function toggleNewPassword(e) {
 
 function toggleNewTeam(e) {
 	// if showing
-	if (document.querySelector(".new_team").style.display == "") {
-		document.querySelector(".new_team").style.display = "none";
+	if (document.getElementById(e.target.value + "_team").style.display == "") {
+		document.getElementById(e.target.value + "_team").style.display = "none";
 	}
 	// if not showing
-	else if (document.querySelector(".new_team").style.display == "none") {
-		var pw = prompt("비밀번호 재확인","");
-		if(pw == ${user.password}) {
-			document.querySelector(".new_team").style.display = "";
-		} else {
-			alert("잘못된 비밀번호 입니다.");
+	else if (document.getElementById(e.target.value + "_team").style.display == "none") {
+		if (confirm('변경하시겠습니까?')) {
+			document.getElementById(e.target.value + "_team").style.display = "";
 		}
-		
 	}
 }
 
@@ -249,23 +239,27 @@ window.onload = registerEvents;
 <body>
 <div id=wrap_body>
 	<header>
-		${user.name}님 환영합니다.
 		<a href = "/main">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
-		<c:if test='${user.userid == "admin"}'> 
-			<a href = "/admin">Admin</a>
-		</c:if>
+		<a href = "/admin">Admin</a>
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">
-		<h3>Account Infomation</h3>
+		<h3>Admin Page</h3>
+		<button type="button" class="semester" value="1401">14년 1학기</button><br><hr>
+		<c:forEach items="${user}" var="user">
+		<c:if test="${user.userid != 'admin' }">
+		
+		<!-- 버튼 밸류가져오는법 물어보기! -->
+		<c:if test="${user.user_team.semester == '1401' }">
+		
 			<a>USERID : ${user.userid}</a><br>
 			
 			<a>USERNAME : ${user.name}</a>
-	 		<button type="button" class="name_modify">MODIFY</button><br>
-		 		<div class="new_name" style="display:none">
-					<form name="new_name" action="/info/newname"  method="POST">
+	 		<button type="button" class="name_modify" value="${user.userid }">MODIFY</button><br>
+		 		<div id="${user.userid}_name" class="new_name" style="display:none">
+					<form name="new_name" action="/admin/newname/${user.userid}"  method="POST">
 						<input type="text" name="newname" placeholder="새로운 이름">
 						<input type="submit" value="SUBMIT">
 						<br>
@@ -273,9 +267,9 @@ window.onload = registerEvents;
 				</div>
 				
 			<a>TEAM : ${user.user_team.name}</a>
-	 		<button type="button" class="team_modify">MODIFY</button><br>
-	 			<div class="new_team" style="display:none">
-					<form name="new_team" action="/info/newteam"  method="POST">
+	 		<button type="button" class="team_modify" value="${user.userid }">MODIFY</button><br>
+	 			<div id="${user.userid}_team" class="new_team" style="display:none">
+					<form name="new_team" action="/admin/newteam/${user.userid}"  method="POST">
 						<input type="text" name="newteam" placeholder="새로운 팀">
 						<input type="submit" value="SUBMIT">
 						<br>
@@ -291,15 +285,19 @@ window.onload = registerEvents;
 	 		</a><br>
 	 		
 	 		<a>PASSWAORD : *****</a>
-	 		<button type="button" class="password_modify">MODIFY</button>
-	 			<div class="new_password" style="display:none">
-					<form name="new_password" action="/info/newpassword"  method="POST">
+	 		<button type="button" class="password_modify" value="${user.userid }">MODIFY</button>
+	 			<div id="${user.userid}_password" class="new_password" style="display:none">
+					<form name="new_password" action="/admin/newpassword/${user.userid}"  method="POST">
 						<input type="password" name="newpassword" placeholder="새로운 비밀번호"><br>
 						<input type="password" name="newpassword_confirm" placeholder="새로운 비밀번호 확인">
 						<input type="submit" value="SUBMIT">
 						<br>
 					</form>
 				</div>
+			<hr>
+			</c:if>
+			</c:if>
+			</c:forEach>
 	</section>
 </div>
 </body>

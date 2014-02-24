@@ -129,6 +129,9 @@ footer {
 		<a href = "/main">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
+		<c:if test='${user.userid == "admin"}'> 
+			<a href = "/admin">Admin</a>
+		</c:if>
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">

@@ -27,6 +27,14 @@ public class Member {
 	
 	@ManyToOne
 	private Team user_team;
+	
+	public boolean isAdmin(){
+		if(userid.equals("admin")){
+			return true;
+		}
+		else return false;
+	}
+	
 
 	public List<Board> getboards() {
 		return boards;
