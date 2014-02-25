@@ -2,7 +2,10 @@ package org.nhnnext.web;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -277,11 +280,33 @@ public class LoginController {
 		}
 	}
 	
+//	@RequestMapping("/admin")
+//	public String adminPage(Model model){
+//		
+//		model.addAttribute("user", memberrepository.findAll());
+//		model.addAttribute("team", memberrepository.findAll());
+//		return "admin";
+//	}
 	
-	@RequestMapping("/admin")
-	public String adminPage(Model model){
-		model.addAttribute("user", memberrepository.findAll());
-		model.addAttribute("team", memberrepository.findAll());
+	@RequestMapping("/admin/{cursemester}")
+	public String adminPage(@PathVariable int cursemester, Model model){
+		ArrayList<Member> memList = new ArrayList<Member>();
+		SortedSet<Integer> semesterList = new TreeSet<Integer>();
+		
+		for(Member member : memberrepository.findAll()){
+			if( member.getUser_team().getSemester() == cursemester){
+				memList.add(member);
+			}
+		}
+		
+		for(Team team : teamRepository.findAll()){
+			semesterList.add(team.getSemester());
+		}
+		
+		model.addAttribute("sem", semesterList);
+		model.addAttribute("user", memList);
+		model.addAttribute("team", memList);
+		
 		return "admin";
 	}
 	

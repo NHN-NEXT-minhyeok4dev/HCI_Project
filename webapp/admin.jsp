@@ -247,12 +247,17 @@ window.onload = registerEvents;
 	</header>
 	<section class = "wrapper">
 		<h3>Admin Page</h3>
-		<button type="button" class="semester" value="1401">14년 1학기</button><br><hr>
+		Semester
+		<c:forEach items="${sem}" var="sem">
+		<a href="/admin/${sem}"> <button type="button" class="semester">${sem}</button></a>
+		</c:forEach>
+		
+		<br><hr>
+		
 		<c:forEach items="${user}" var="user">
 		<c:if test="${user.userid != 'admin' }">
 		
-		<!-- 버튼 밸류가져오는법 물어보기! -->
-		<c:if test="${user.user_team.semester == '1401' }">
+		<%-- <c:if test="${user.user_team.semester == '1401' }"> --%>
 		
 			<a>USERID : ${user.userid}</a><br>
 			
@@ -295,7 +300,6 @@ window.onload = registerEvents;
 					</form>
 				</div>
 			<hr>
-			</c:if>
 			</c:if>
 			</c:forEach>
 	</section>
