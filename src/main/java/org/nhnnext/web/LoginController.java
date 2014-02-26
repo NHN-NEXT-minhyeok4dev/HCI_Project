@@ -133,37 +133,10 @@ public class LoginController {
 		
 		memberrepository.save(member);
 		
-		if(member.getUserid() == "admin")
-			return "redirect:/admin";
 		return "redirect:/info";
 	}
 	
-	@RequestMapping("/admin/newname/{target}")
-	public String newnameByAdmin(@PathVariable String target, Model model, String newname, Member member, HttpSession session) {
-		String userid = (String)session.getAttribute("userid");
-		if(userid == null) {
-			model.addAttribute("error", "로그인해주세요");
-			return "index";
-		}
-		if(userid.equals("admin")){
-			
-			Member omember = memberrepository.findOne(target);
-			
-			member.setUserid(omember.getUserid());
-			member.setName(newname);
-			member.setPassword(omember.getPassword());
-			member.setUser_team(omember.getUser_team());
-			
-			memberrepository.save(member);
-			
-			return "redirect:/admin";
-		}
-		else {
-			model.addAttribute("error", "권한이 없습니다");
-			return "index";
-		}
-		
-	}
+	
 	
 	@RequestMapping("/info/newpassword")
 	public String newpassword(@PathVariable String target, Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
@@ -175,7 +148,7 @@ public class LoginController {
 		
 		if(!newpassword.equals(newpassword_confirm)) {
 			model.addAttribute("error", "비밀번호가 다릅니다.");
-			return "redirect:/admin";
+			return "redirect:/info";
 		}
 		
 		Member omember = memberrepository.findOne(target);
@@ -191,35 +164,7 @@ public class LoginController {
 			return "redirect:/info";
 	}
 	
-	@RequestMapping("/admin/newpassword/{target}")
-	public String newpasswordByAdmin(Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
-		String userid = (String)session.getAttribute("userid");
-		if(userid == null) {
-			model.addAttribute("error", "로그인해주세요");
-			return "index";
-		}
-		
-		if(!newpassword.equals(newpassword_confirm)) {
-			model.addAttribute("error", "비밀번호가 다릅니다.");
-			return "redirect:/info";
-		}
-		if(userid.equals("admin")){
-			Member omember = memberrepository.findOne(userid);
-			
-			member.setUserid(userid);
-			member.setName(omember.getName());
-			member.setPassword(newpassword);
-			member.setUser_team(omember.getUser_team());
-			
-			memberrepository.save(member);
-		
-			return "redirect:/admin";
-		}
-		else {
-			model.addAttribute("error", "권한이 없습니다");
-			return "index";
-		}
-	}
+	
 	
 	@RequestMapping("/info/newteam")
 	public String newteam(Model model, String newteam, Member member, HttpSession session) {
@@ -243,71 +188,9 @@ public class LoginController {
 
 		memberrepository.save(member);
 		
-		if(member.getUserid() == "admin")
-			return "redirect:/admin";
-		
 		return "redirect:/info";
 	}
 	
-	@RequestMapping("/admin/newteam/{target}")
-	public String newteamByAdmin(@PathVariable String target, Model model, String newteam, Member member, HttpSession session) {
-		String userid = (String)session.getAttribute("userid");
-		if(userid == null) {
-			model.addAttribute("error", "로그인해주세요");
-			return "index";
-		}
-		
-		if(!teamRepository.exists(newteam)) {
-			teamRepository.save(new Team(newteam));
-		}
-		if(userid.equals("admin")){
-			Member omember = memberrepository.findOne(target);
-			Team user_team = teamRepository.findOne(newteam);
-			
-			member.setUserid(omember.getUserid());
-			member.setName(omember.getName());
-			member.setPassword(omember.getPassword());
-			member.setUser_team(user_team);
-			
-			memberrepository.save(member);
-		
-		
-			return "redirect:/admin";
-		}
-		else{
-			model.addAttribute("error", "권한이 없습니다");
-			return "index";
-		}
-	}
 	
-//	@RequestMapping("/admin")
-//	public String adminPage(Model model){
-//		
-//		model.addAttribute("user", memberrepository.findAll());
-//		model.addAttribute("team", memberrepository.findAll());
-//		return "admin";
-//	}
-	
-	@RequestMapping("/admin/{cursemester}")
-	public String adminPage(@PathVariable int cursemester, Model model){
-		ArrayList<Member> memList = new ArrayList<Member>();
-		SortedSet<Integer> semesterList = new TreeSet<Integer>();
-		
-		for(Member member : memberrepository.findAll()){
-			if( member.getUser_team().getSemester() == cursemester){
-				memList.add(member);
-			}
-		}
-		
-		for(Team team : teamRepository.findAll()){
-			semesterList.add(team.getSemester());
-		}
-		
-		model.addAttribute("sem", semesterList);
-		model.addAttribute("user", memList);
-		model.addAttribute("team", memList);
-		
-		return "admin";
-	}
 	
 }

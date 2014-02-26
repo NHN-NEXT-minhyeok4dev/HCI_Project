@@ -130,13 +130,15 @@ footer {
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
 		<c:if test='${user.userid == "admin"}'> 
-			<a href = "/admin">Admin</a>
+			<a href = "/admin/${user.user_team.semester }">Admin</a>
 		</c:if>
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">
 		<c:forEach items="${team}" var="team">
+			<c:if test="${team.name != 'admin' }">
 			<a href = "/board/list/${team.name}">${team.name} TEAM's page</a>
+			</c:if>
 		</c:forEach>
 	</section>
 </div>

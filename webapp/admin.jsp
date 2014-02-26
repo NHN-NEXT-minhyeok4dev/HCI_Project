@@ -165,6 +165,11 @@ footer {
 	text-align: center;
 }
 
+a.semester{
+	margin:0px;
+	padding:0px;
+}
+
 </style>
 <script>
 function registerEvents() {
@@ -233,6 +238,17 @@ function toggleNewTeam(e) {
 	}
 }
 
+function toggleNewSemester(e) {
+	// if showing
+	if (document.getElementById("new_sem").style.display == "") {
+		document.getElementById("new_sem").style.display = "none";
+	}
+	// if not showing
+	else if (document.getElementById("new_sem").style.display == "none") {
+		document.getElementById("new_sem").style.display = "";
+	}
+}
+
 window.onload = registerEvents;
 </script>
 </head>
@@ -242,22 +258,29 @@ window.onload = registerEvents;
 		<a href = "/main">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
-		<a href = "/admin">Admin</a>
+		<a href = "/admin/${curSem}">Admin</a>
 		<a href = "/logout">Logout</a>
 	</header>
+	
 	<section class = "wrapper">
 		<h3>Admin Page</h3>
-		Semester
+		Semester &nbsp;
 		<c:forEach items="${sem}" var="sem">
-		<a href="/admin/${sem}"> <button type="button" class="semester">${sem}</button></a>
+		<a class="semester" href="/admin/${sem}"> <button type="button" class="semester">${sem}</button></a>
 		</c:forEach>
 		
-		<br><hr>
+		<button type="button" class="new_semester" style="float:right;" onclick="toggleNewSemester()">New Semester</button><br>
+		 		<div id = "new_sem"class="new_sem" style="display:none; text-align:right;">
+					<form name="new_sem" action="/admin/newsem"  method="POST">
+						<input type="text" name="newsem" placeholder="새 학기코드 입력 (ex.14년 1학기 = 1401)">
+						<input type="submit" value="SUBMIT">
+						<br>
+					</form>
+				</div>
+		<hr>
 		
 		<c:forEach items="${user}" var="user">
-		<c:if test="${user.userid != 'admin' }">
-		
-		<%-- <c:if test="${user.user_team.semester == '1401' }"> --%>
+		<c:if test="${user.userid != 'admin' }">		
 		
 			<a>USERID : ${user.userid}</a><br>
 			

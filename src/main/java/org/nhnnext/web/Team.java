@@ -14,18 +14,22 @@ public class Team {
 	@Id
 	@Column(length = 100, nullable = false)
 	private String name;
-
+	
 	@Column(nullable = false)
 	private int semester;
 	
 	@OneToMany(mappedBy = "user_team", fetch = FetchType.LAZY)
     private List<Member> members;
-
+	
+	private static int currentSemester = 1401;
+	
+	
+	
 	public Team(String name) {
 		this.name = name;
 		
 		// 14년 1학기 default.
-		this.semester = 1401;
+		this.semester = currentSemester;
 	}
 
 	public Team() {
@@ -53,6 +57,17 @@ public class Team {
 
 	public void setSemester(int semester) {
 		this.semester = semester;
+	}
+
+	
+	
+	public static int getCurrentSemester() {
+		return currentSemester;
+	}
+
+	public static void newSemester(String newsem) {
+		currentSemester = Integer.parseInt(newsem);
+		
 	}
 	
 }
