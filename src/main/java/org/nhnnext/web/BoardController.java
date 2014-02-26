@@ -151,9 +151,33 @@ public class BoardController {
 			model.addAttribute("error", "로그인해주세요");
 			return "index";
 		}
+		
+		List<Team> resultTeam = new ArrayList<Team>();
+		List<Team> teams = (List<Team>) teamRepository.findAll();
+		List<Member> members = (List<Member>) memberrepository.findAll();
+		
+		for(Team t: teams) { 
+			int check = 0;
+			
+			for (Member m : members) {
+				if(t.getName().equals(m.getUser_team().getName())) {
+					check = 1;
+				}
+			}
+			
+			if(check == 0) {
+				teamRepository.delete(t);
+			}
+			
+			if(!t.getName().equals("admin")) {
+				resultTeam.add(t);
+			}
+
+		}
+		
 		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("member", memberrepository.findAll());
-		model.addAttribute("team", teamRepository.findAll());
+		model.addAttribute("team", resultTeam);
 		return "main";
 	}
 	
