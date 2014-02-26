@@ -443,7 +443,7 @@ function newline() {
 		<div id="wrap_contents">
 			<c:forEach items="${board}" var="board">
 				<div class="article" id="article_${board.id}">
-					<span id="board_id">${board.id} >></span> ${board.title}
+					<span id="board_id">${board.user_board.name} >></span> ${board.title}
 					<span style="float:right; margin_right:10px"><img class="icn_board_delete" id="${board.id}" src="/img/icn_board_delete.png"></span>
 					<span style="float:right;"><img class="icn_dropdown" id="${board.id}" src="/img/icn_dropdown.png"></span>
 					<span style="float:right;"><img	class="icn_comment" id="${board.id}" src="/img/icn_comment.png"></span>
