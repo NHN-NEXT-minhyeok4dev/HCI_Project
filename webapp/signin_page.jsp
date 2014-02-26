@@ -38,7 +38,7 @@ h1,h2 {
 	max-width: 700px;
 	min-width: 280px;
 	margin: 30px auto 30px auto;
-	background: #fff url(../img/try.jpg) no-repeat 99% 30px;
+	background: #fff no-repeat 99% 30px;
 	position: relative;
 	padding: 20px;
 	box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
