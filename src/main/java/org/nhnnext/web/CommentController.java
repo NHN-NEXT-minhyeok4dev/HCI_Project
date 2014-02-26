@@ -1,5 +1,8 @@
 package org.nhnnext.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpSession;
 
 import org.nhnnext.repository.BoardRepository;
@@ -35,6 +38,14 @@ public class CommentController {
 		String link = comment.getBoard().getUser_board().getUser_team().getName();
 		
 		commentRepository.save(comment);
+		
+		try {
+			link =  URLEncoder.encode(link, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return "redirect:/board/list/" + link;
 	}
 	
@@ -48,6 +59,14 @@ public class CommentController {
 		comment.setRating(rate);
 		System.out.println(comment.getContents());
 		commentRepository.save(comment);
+		
+		try {
+			link =  URLEncoder.encode(link, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return "redirect:/board/list/" + link;
 	}
 	
@@ -56,6 +75,13 @@ public class CommentController {
 		String commentuser = commentRepository.findOne(commentID).getUser_comment().getUserid();
 		String userid = (String)session.getAttribute("userid");
 		String link = commentRepository.findOne(commentID).getBoard().getUser_board().getUser_team().getName();
+		try {
+			link =  URLEncoder.encode(link, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		if(!commentuser.equals(userid)) {
 			model.addAttribute("error", "삭제권한이 없습니다.");

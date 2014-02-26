@@ -1,5 +1,7 @@
 package org.nhnnext.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -47,6 +49,13 @@ public class BoardController {
 		boardRepository.save(board);
 		
 		String link = member.getUser_team().getName();
+		
+		try {
+			link =  URLEncoder.encode(link, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "redirect:/board/list/" + link;
 	}
@@ -109,6 +118,14 @@ public class BoardController {
 		Board board = boardRepository.findOne(boardid);
 		String link = board.getUser_board().getUser_team().getName();
 		
+		try {
+			link =  URLEncoder.encode(link, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		if(!link.equals(teamid)) {
 			model.addAttribute("error", "삭제권한이 없습니다.");
 			return "redirect:/board/list/" + link;
@@ -120,7 +137,8 @@ public class BoardController {
 			}
 		}
 		
-		boardRepository.delete(boardid);		
+		boardRepository.delete(boardid);
+		
 		
 		return "redirect:/board/list/" + link;
 	}
