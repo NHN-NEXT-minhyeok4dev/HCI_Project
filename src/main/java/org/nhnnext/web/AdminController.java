@@ -22,7 +22,13 @@ public class AdminController {
 	private TeamRepository teamRepository;
 	
 	@RequestMapping("/admin/{cursemester}")
-	public String adminPage(@PathVariable int cursemester, Model model){
+	public String adminPage(@PathVariable int cursemester, Model model, HttpSession session){
+		String userid = (String)session.getAttribute("userid");
+		if(!userid.equals("admin")) {
+			model.addAttribute("error", "권한이 없습니다");
+			return "index";
+		}
+		
 		ArrayList<Member> memList = new ArrayList<Member>();
 		SortedSet<Integer> semesterList = new TreeSet<Integer>();
 		
