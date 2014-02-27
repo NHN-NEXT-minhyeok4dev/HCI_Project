@@ -157,4 +157,12 @@ public class AdminController {
 			return "index";
 		}
 	}
+	
+	@RequestMapping("/admin/delete/{userid}")
+	public String deleteMember(@PathVariable String userid){
+		memberrepository.delete(userid);		
+		
+		return "redirect:/admin/" + Team.getCurrentSemester();
+		
+	}
 }

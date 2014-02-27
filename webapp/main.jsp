@@ -119,6 +119,31 @@ footer {
 	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
 	text-align: center;
 }
+button[type="button"] {
+	border: 1px solid #EF9309;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.4);
+	color: #724C04;
+	display: inline-block;
+	border-radius: 4px;
+	margin: 2px 2px 2px 2px;
+	padding: 5px 5px;
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-weight: bold;
+	background: #ffaf4b;
+	background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a));
+	background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 );
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
+a.semester{
+	margin:0px;
+	padding:0px;
+}
+
 
 </style>
 </head>
@@ -126,15 +151,21 @@ footer {
 <div id=wrap_body>
 	<header>
 		${user.name}님 환영합니다.
-		<a href = "/main">Main</a>
+		<a href = "/main/${curSem}">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
 		<c:if test='${user.userid == "admin"}'> 
-			<a href = "/admin/${user.user_team.semester }">Admin</a>
+			<a href = "/admin/${curSem}">Admin</a>
 		</c:if>
 		<a href = "/logout">Logout</a>
 	</header>
 	<section class = "wrapper">
+	Semester &nbsp;
+		<c:forEach items="${sem}" var="sem">
+		<a class="semester" href="/main/${sem}"> <button type="button" class="semester">${sem}</button></a>
+		</c:forEach>
+		<br><hr>
+	
 		<c:forEach items="${team}" var="team">
 			<c:if test="${team.name != 'admin' }">
 			<a href = "/board/list/${team.name}">${team.name} TEAM's page</a>

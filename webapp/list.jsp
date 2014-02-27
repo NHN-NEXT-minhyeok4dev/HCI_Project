@@ -426,11 +426,11 @@ function newline() {
 <div id="wrap_body">
 	<header>
 		${user.name}님 환영합니다.
-		<a href = "/main">Main</a>
+		<a href = "/main/${curSem}">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
 		<c:if test='${user.userid == "admin"}'> 
-			<a href = "/admin/${user.user_team.semester }">Admin</a>
+			<a href = "/admin/${curSem}">Admin</a>
 		</c:if>
 		<a href = "/logout">Logout</a>
 	</header>

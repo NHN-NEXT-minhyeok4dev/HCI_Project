@@ -112,6 +112,7 @@ public class LoginController {
 		
 		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("team", members);
+		model.addAttribute("curSem", Team.getCurrentSemester());
 		
 		return "info";
 	}

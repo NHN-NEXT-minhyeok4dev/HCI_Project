@@ -255,7 +255,7 @@ window.onload = registerEvents;
 <body>
 <div id=wrap_body>
 	<header>
-		<a href = "/main">Main</a>
+		<a href = "/main/${curSem}">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
 		<a href = "/admin/${curSem}">Admin</a>
@@ -263,7 +263,7 @@ window.onload = registerEvents;
 	</header>
 	
 	<section class = "wrapper">
-		<h3>Admin Page</h3>
+		<h3>Admin Page (현재 학기 : ${curSem})</h3>
 		Semester &nbsp;
 		<c:forEach items="${sem}" var="sem">
 		<a class="semester" href="/admin/${sem}"> <button type="button" class="semester">${sem}</button></a>
@@ -282,7 +282,7 @@ window.onload = registerEvents;
 		<c:forEach items="${user}" var="user">
 		<c:if test="${user.userid != 'admin' }">		
 		
-			<a>USERID : ${user.userid}</a><br>
+			<a>USERID : ${user.userid}</a><a href="/admin/delete/${user.userid}"  style="float:right;"><button type="button">DELETE</button></a><br> 
 			
 			<a>USERNAME : ${user.name}</a>
 	 		<button type="button" class="name_modify" value="${user.userid }">MODIFY</button><br>

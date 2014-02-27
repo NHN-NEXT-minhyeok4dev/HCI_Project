@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -108,6 +110,7 @@ public class BoardController {
 		model.addAttribute("board", resultBoard);
 		model.addAttribute("team", team);
 		model.addAttribute("comment", comment);
+		model.addAttribute("curSem", Team.getCurrentSemester());
 		
 		return "list";
 	}
@@ -144,8 +147,8 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping("/main")
-	public String main(Model model, HttpSession session) {
+	@RequestMapping("/main/{sem}")
+	public String main(@PathVariable int sem, Model model, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid == null) {
 			model.addAttribute("error", "로그인해주세요");
@@ -155,6 +158,11 @@ public class BoardController {
 		List<Team> resultTeam = new ArrayList<Team>();
 		List<Team> teams = (List<Team>) teamRepository.findAll();
 		List<Member> members = (List<Member>) memberrepository.findAll();
+		SortedSet<Integer> semesterList = new TreeSet<Integer>();
+		
+		for(Team team : teamRepository.findAll()){
+			semesterList.add(team.getSemester());
+		}
 		
 		for(Team t: teams) { 
 			int check = 0;
@@ -169,15 +177,18 @@ public class BoardController {
 				teamRepository.delete(t);
 			}
 			
-			if(!t.getName().equals("admin")) {
+			if(!t.getName().equals("admin") && (t.getSemester() == sem) ) {
 				resultTeam.add(t);
 			}
 
 		}
 		
+		model.addAttribute("sem", semesterList);
 		model.addAttribute("user", memberrepository.findOne(userid));
 		model.addAttribute("member", memberrepository.findAll());
 		model.addAttribute("team", resultTeam);
+		model.addAttribute("curSem", Team.getCurrentSemester());
+		
 		return "main";
 	}
 	
