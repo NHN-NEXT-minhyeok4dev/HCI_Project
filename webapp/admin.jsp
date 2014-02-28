@@ -170,6 +170,12 @@ a.semester{
 	padding:0px;
 }
 
+section p{
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	color: #aaa;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+}
+
 </style>
 <script>
 function registerEvents() {
@@ -255,7 +261,6 @@ window.onload = registerEvents;
 <body>
 <div id=wrap_body>
 	<header>
-		${user.name}님 환영합니다.
 		<a href = "/main/${curSem}">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
@@ -264,7 +269,8 @@ window.onload = registerEvents;
 	</header>
 	
 	<section class = "wrapper">
-		<h3>Admin Page (현재 학기 : ${curSem})</h3>
+		<h3>Admin Page (현재 학기 : ${curSem})</h3> 
+		
 		Semester &nbsp;
 		<c:forEach items="${sem}" var="sem">
 		<a class="semester" href="/admin/${sem}"> <button type="button" class="semester">${sem}</button></a>

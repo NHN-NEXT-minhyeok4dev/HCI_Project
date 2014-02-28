@@ -6,6 +6,8 @@ import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
+import org.nhnnext.repository.BoardRepository;
+import org.nhnnext.repository.CommentRepository;
 import org.nhnnext.repository.MemberRepository;
 import org.nhnnext.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,10 @@ public class AdminController {
 	private MemberRepository memberrepository;
 	@Autowired
 	private TeamRepository teamRepository;
+	@Autowired
+    private BoardRepository boardRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 	
 	@RequestMapping("/admin/{cursemester}")
 	public String adminPage(@PathVariable int cursemester, Model model, HttpSession session){
@@ -165,7 +171,23 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/delete/{userid}")
-	public String deleteMember(@PathVariable String userid){
+	public String deleteMember(@PathVariable String userid, Model model){
+		Member user = memberrepository.findOne(userid);
+		
+		for(Board board : boardRepository.findAll()){
+			if(board.getUser_board().getUserid().equals(user.getUserid())){
+				model.addAttribute("error", "사용자의 글이나 댓글이 남아있어 삭제가 불가합니다");				
+				return "index";
+			}
+		}
+		
+		for(Comment comment : commentRepository.findAll()){
+			if(comment.getUser_comment().getUserid().equals(user.getUserid())){
+				model.addAttribute("error", "사용자의 글이나 댓글이 남아있어 삭제가 불가합니다");				
+				return "index";
+			}
+		}
+		
 		memberrepository.delete(userid);		
 		
 		return "redirect:/admin/" + Team.getCurrentSemester();
