@@ -255,6 +255,7 @@ window.onload = registerEvents;
 <body>
 <div id=wrap_body>
 	<header>
+		${user.name}님 환영합니다.
 		<a href = "/main/${curSem}">Main</a>
 		<a href = "/write">Write</a>
 		<a href = "/info">Info</a>
