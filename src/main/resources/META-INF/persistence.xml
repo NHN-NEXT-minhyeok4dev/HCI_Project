@@ -9,7 +9,25 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.show_sql" value="false"/>
+			<property name="hibernate.show_sql" value="false" />
+
+			<!--connection pool -->
+			<property name="hibernate.dbcp.maxActive" value ="10"></property>
+			<property name="hibernate.dbcp.whenExhaustedAction" value="1"></property>
+			<property name="hibernate.dbcp.maxWait" value="20000"></property>
+			<property name="hibernate.dbcp.maxIdle" value="10"></property>
+
+			<!-- prepared statement cache -->
+			<property name="hibernate.dbcp.ps.maxActive" value="10"></property>
+			<property name="hibernate.dbcp.ps.whenExhaustedAction" value="1"></property>
+			<property name="hibernate.dbcp.ps.maxWait" value="20000"></property>
+			<property name="hibernate.dbcp.ps.maxIdle" value="10"></property>
+
+			<!-- optional query to validate pooled connections: -->
+			<property name="hibernate.dbcp.validationQuery" value="select 1"></property>
+			<property name="hibernate.dbcp.testOnBorrow" value="true"></property>
+			<property name="hibernate.dbcp.testOnReturn" value="true"></property>
+			
 		</properties>
 	</persistence-unit>
 </persistence>
