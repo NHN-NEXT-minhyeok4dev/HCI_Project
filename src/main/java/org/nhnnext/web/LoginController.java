@@ -177,6 +177,8 @@ public class LoginController {
 		
 		if(!teamRepository.exists(newteam)) {
 			teamRepository.save(new Team(newteam));
+			
+			return "redirect:/info";
 		}
 		
 		Member omember = memberrepository.findOne(userid);
