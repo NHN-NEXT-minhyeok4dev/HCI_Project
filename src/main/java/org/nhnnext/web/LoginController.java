@@ -53,6 +53,10 @@ public class LoginController {
 			return "index";
 		}
 		
+		if(member.getUser_team().getName().contains(" ")){
+			model.addAttribute("error", "띄어쓰기 금지!");
+			return "index";
+		}
 		
 		
 		// if team name is not exists
