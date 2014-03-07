@@ -2,10 +2,7 @@ package org.nhnnext.web;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +11,6 @@ import org.nhnnext.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,11 +42,18 @@ public class LoginController {
 				return "index";	
 			}
 		}
+		if(member.getUser_team().getName().equals("")){
+			
+			model.addAttribute("error", "팀 명을 입력하세요.");
+			return "index";
+		}
 		
 		if (!member.getPassword().equals(confirm)) {
 			model.addAttribute("error", "패스워드가 일치하지 않습니다.");
 			return "index";
 		}
+		
+		
 		
 		// if team name is not exists
 		if(!teamRepository.exists(member.getUser_team().getName())){
@@ -117,7 +120,7 @@ public class LoginController {
 		return "info";
 	}
 	
-	@RequestMapping("/info/newname")
+	@RequestMapping(value="/info/newname", method=RequestMethod.POST)
 	public String newname(Model model, String newname, Member member, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid == null) {
@@ -139,8 +142,8 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping("/info/newpassword")
-	public String newpassword(@PathVariable String target, Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
+	@RequestMapping(value="/info/newpassword", method=RequestMethod.POST)
+	public String newpassword(Model model, String newpassword, String newpassword_confirm, Member member, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid == null) {
 			model.addAttribute("error", "로그인해주세요");
@@ -152,7 +155,7 @@ public class LoginController {
 			return "redirect:/info";
 		}
 		
-		Member omember = memberrepository.findOne(target);
+		Member omember = memberrepository.findOne(userid);
 		
 		member.setUserid(omember.getUserid());
 		member.setName(omember.getName());
@@ -167,7 +170,7 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping("/info/newteam")
+	@RequestMapping(value="/info/newteam", method=RequestMethod.POST)
 	public String newteam(Model model, String newteam, Member member, HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid == null) {

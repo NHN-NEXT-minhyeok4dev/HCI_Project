@@ -102,7 +102,7 @@ public class AdminController {
 		if(userid.equals("admin")){
 			Member omember = memberrepository.findOne(target);
 			
-			member.setUserid(userid);
+			member.setUserid(omember.getUserid());
 			member.setName(omember.getName());
 			member.setPassword(newpassword);
 			member.setUser_team(omember.getUser_team());

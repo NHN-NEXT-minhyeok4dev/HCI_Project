@@ -293,7 +293,7 @@ window.onload = registerEvents;
 	 		<a>PASSWAORD : *****</a>
 	 		<button type="button" class="password_modify">MODIFY</button>
 	 			<div class="new_password" style="display:none">
-					<form name="new_password" action="/info/newpassword"  method="POST">
+					<form name="new_password" action="/info/newpassword" method="POST">
 						<input type="password" name="newpassword" placeholder="새로운 비밀번호"><br>
 						<input type="password" name="newpassword_confirm" placeholder="새로운 비밀번호 확인">
 						<input type="submit" value="SUBMIT">
