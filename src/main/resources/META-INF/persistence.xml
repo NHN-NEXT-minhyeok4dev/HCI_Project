@@ -28,6 +28,9 @@
 			<property name="hibernate.dbcp.testOnBorrow" value="true"></property>
 			<property name="hibernate.dbcp.testOnReturn" value="true"></property>
 			
+
+			
+			
 		</properties>
 	</persistence-unit>
 </persistence>
