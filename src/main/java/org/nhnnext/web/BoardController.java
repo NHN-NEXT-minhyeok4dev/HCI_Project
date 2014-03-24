@@ -51,14 +51,11 @@ public class BoardController {
 		int month = cal.get ( Calendar.MONTH ) + 1 ;
 		int date = cal.get ( Calendar.DATE ) ;
 		String curDate = "_" + year + month + date + ".pdf";
-//		
-//		file.getOriginalFilename() = file.getOriginalFilename().concat(curDate);
-		
-//		String args = file.getOriginalFilename().concat(curDate);
 		
 		FileUploader.upload(file);
 		board.setUser_board(member);
-		board.setFileName(file.getOriginalFilename().replace(".pdf", curDate));
+//		board.setFileName(file.getOriginalFilename().replace(".pdf", curDate));
+		board.setFileName(file.getOriginalFilename());
 		
 		boardRepository.save(board);
 		
