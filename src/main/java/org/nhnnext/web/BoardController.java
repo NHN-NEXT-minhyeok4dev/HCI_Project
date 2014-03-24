@@ -54,8 +54,8 @@ public class BoardController {
 		
 		FileUploader.upload(file);
 		board.setUser_board(member);
-//		board.setFileName(file.getOriginalFilename().replace(".pdf", curDate));
-		board.setFileName(file.getOriginalFilename());
+		board.setFileName(file.getOriginalFilename().replace(".pdf", curDate));
+//		board.setFileName(file.getOriginalFilename());
 		
 		boardRepository.save(board);
 		

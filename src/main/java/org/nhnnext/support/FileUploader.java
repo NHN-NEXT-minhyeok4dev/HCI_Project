@@ -31,13 +31,13 @@ public class FileUploader {
 	}
 
 	public static File getDestinationFile(String fileName) {
-//		java.util.Calendar cal = java.util.Calendar.getInstance();
-//		int year = cal.get(Calendar.YEAR);
-//		int month = cal.get ( Calendar.MONTH ) + 1 ;
-//		int date = cal.get ( Calendar.DATE ) ;
-//		String curDate = "_" + year + month + date + ".pdf";
-//		
-//		return new File(ATTACHMENT_ROOT_DIR + File.separator + fileName.replace(".pdf", curDate));
-		return new File(ATTACHMENT_ROOT_DIR + File.separator + fileName);
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get ( Calendar.MONTH ) + 1 ;
+		int date = cal.get ( Calendar.DATE ) ;
+		String curDate = "_" + year + month + date + ".pdf";
+		
+		return new File(ATTACHMENT_ROOT_DIR + File.separator + fileName.replace(".pdf", curDate));
+//		return new File(ATTACHMENT_ROOT_DIR + File.separator + fileName);
 	}
 }
