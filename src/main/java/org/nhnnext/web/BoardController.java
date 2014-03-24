@@ -3,6 +3,7 @@ package org.nhnnext.web;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -44,9 +45,20 @@ public class BoardController {
 			return "index";
 		}
 		Member member = memberrepository.findOne(userid);
+		
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get ( Calendar.MONTH ) + 1 ;
+		int date = cal.get ( Calendar.DATE ) ;
+		String curDate = "_" + year + month + date + ".pdf";
+//		
+//		file.getOriginalFilename() = file.getOriginalFilename().concat(curDate);
+		
+//		String args = file.getOriginalFilename().concat(curDate);
+		
 		FileUploader.upload(file);
 		board.setUser_board(member);
-		board.setFileName(file.getOriginalFilename());
+		board.setFileName(file.getOriginalFilename().replace(".pdf", curDate));
 		
 		boardRepository.save(board);
 		
